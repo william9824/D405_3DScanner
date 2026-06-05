@@ -4,6 +4,8 @@ from datetime import datetime
 import pyrealsense2 as rs
 import cv2
 import numpy as np
+import open3d as o3d
+
 
 WIDTH = 640
 HEIGHT = 480
@@ -29,26 +31,72 @@ def make_depth_colormap(depth_image, depth_scale):
 
     return depth_colormap
 
-def save_capture(color_image, depth_image, depth_scale):
+def get_open3d_intrinsic(color_frame):
+    intr = color_frame.profile.as_video_stream_profile().intrinsics
 
+    print("\n[Camera Intrinsic]")
+    print("width :", intr.width)
+    print("height:", intr.height)
+    print("fx    :", intr.fx)
+    print("fy    :", intr.fy)
+    print("cx    :", intr.ppx)
+    print("cy    :", intr.ppy)
+
+    return o3d.camera.PinholeCameraIntrinsic(
+        intr.width,
+        intr.height,
+        intr.fx,
+        intr.fy,
+        intr.ppx,
+        intr.ppy
+    )
+
+
+def create_point_cloud(color_image_bgr, depth_image_raw, depth_scale, intrinsic):
+    color_image_rgb = cv2.cvtColor(color_image_bgr, cv2.COLOR_BGR2RGB)
+
+    color_o3d = o3d.geometry.Image(color_image_rgb)
+    depth_o3d = o3d.geometry.Image(depth_image_raw)
+
+    open3d_depth_scale = 1.0 / depth_scale
+
+    rgbd = o3d.geometry.RGBDImage.create_from_color_and_depth(
+        color=color_o3d,
+        depth=depth_o3d,
+        depth_scale=open3d_depth_scale,
+        depth_trunc=MAX_DEPTH_M,
+        convert_rgb_to_intensity=False
+    )
+
+    pcd = o3d.geometry.PointCloud.create_from_rgbd_image(
+        image=rgbd,
+        intrinsic=intrinsic
+    )
+
+    # Flip for easier viewing in Open3D
+    pcd.transform([
+        [1,  0,  0, 0],
+        [0, -1,  0, 0],
+        [0,  0, -1, 0],
+        [0,  0,  0, 1],
+    ])
+
+    return pcd
+
+
+def save_point_cloud(pcd):
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    color_path = os.path.join(SAVE_DIR, f"color_{timestamp}.png")
-    depth_mm_path = os.path.join(SAVE_DIR, f"depth_mm_{timestamp}.png")
-    depth_vis_path = os.path.join(SAVE_DIR, f"depth_vis_{timestamp}.png")
+    ply_path = os.path.join(SAVE_DIR, f"pointcloud_{timestamp}.ply")
 
-    cv2.imwrite(color_path, color_image)
+    ok = o3d.io.write_point_cloud(ply_path, pcd)
 
-    # Save as uint16 PNG so we keep real distance data.
-    depth_mm = (depth_image * depth_scale * 1000.0).astype(np.uint16)
+    if ok:
+        print(f"[SAVED] {ply_path}")
+    else:
+        print("[ERROR] Failed to save point cloud.")
 
-    cv2.imwrite(depth_mm_path, depth_mm)
-    depth_colormap = make_depth_colormap(depth_image, depth_scale)
-    cv2.imwrite(depth_vis_path, depth_colormap)
+    return ply_path
 
-    print("\n[SAVED]")
-    print("Color image:       ", color_path)
-    print("Depth image 16-bit:", depth_mm_path)
-    print("Depth preview:     ", depth_vis_path)
 
 def main():
     pipeline = rs.pipeline()
@@ -65,7 +113,7 @@ def main():
 
     print(f"[INFO] Depth scale: {depth_scale}")
     print(f"[INFO] Press ESC to quit.")
-    print(f"[INFO] Press SPACE to capture.")
+    print(f"[INFO] Press SPACE to create point cloud.")
 
     for _ in range(30):
         pipeline.wait_for_frames()
@@ -94,7 +142,23 @@ def main():
             if key == 27:
                 break;
             if key == 32:
-                save_capture(color_image, depth_image, depth_scale)
+                print(f"\n[INFO] Creating poing cloud...")
+
+                intrinsic = get_open3d_intrinsic(color_frame)
+
+                pcd = create_point_cloud(
+                    color_image_bgr = color_image,
+                    depth_image_raw = depth_image,
+                    depth_scale = depth_scale,
+                    intrinsic = intrinsic
+                )
+
+                print(f"\n[INFO] Number of points: {len(pcd.points)}")
+
+                save_point_cloud(pcd)
+
+                print("[INFO] Opening Opend3D Viewer...")
+                o3d.visualization.draw_geometries([pcd])
                 
     finally:
         print("[INFO] Stopping pipeline...")
