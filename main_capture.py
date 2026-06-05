@@ -83,9 +83,24 @@ def create_point_cloud(color_image_bgr, depth_image_raw, depth_scale, intrinsic)
 
     return pcd
 
+def save_debug_images(color_image_bgr, depth_image_raw, depth_scale, timestamp):
+    color_path = os.path.join(SAVE_DIR, f"color_{timestamp}.png")
+    depth_mm_path = os.path.join(SAVE_DIR, f"depth_mm_{timestamp}.png")
+    depth_vis_path = os.path.join(SAVE_DIR, f"depth_vis_{timestamp}.png")
 
-def save_point_cloud(pcd):
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    cv2.imwrite(color_path, color_image_bgr)
+
+    depth_mm = (depth_image_raw * depth_scale * 1000.0).astype(np.uint16)
+    cv2.imwrite(depth_mm_path, depth_mm)
+
+    depth_vis = make_depth_colormap(depth_image_raw, depth_scale)
+    cv2.imwrite(depth_vis_path, depth_vis)
+
+    print(f"[SAVED] {color_path}")
+    print(f"[SAVED] {depth_mm_path}")
+    print(f"[SAVED] {depth_vis_path}")
+
+def save_point_cloud(pcd, timestamp):
     ply_path = os.path.join(SAVE_DIR, f"pointcloud_{timestamp}.ply")
 
     ok = o3d.io.write_point_cloud(ply_path, pcd)
@@ -106,7 +121,9 @@ def main():
     config.enable_stream(rs.stream.color, WIDTH, HEIGHT, rs.format.bgr8, FPS) # For openCV compatibility
 
     print("[INFO] Starting RealSense pipeline...")
+    
     profile = pipeline.start(config)
+    align = rs.align(rs.stream.color)
 
     depth_sensor = profile.get_device().first_depth_sensor()
     depth_scale = depth_sensor.get_depth_scale()
@@ -121,6 +138,8 @@ def main():
     try:
         while True:
             frames = pipeline.wait_for_frames()
+
+            align_frames = align.process(frames)
 
             depth_frame = frames.get_depth_frame()
             color_frame = frames.get_color_frame()
@@ -155,7 +174,16 @@ def main():
 
                 print(f"\n[INFO] Number of points: {len(pcd.points)}")
 
-                save_point_cloud(pcd)
+                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+                save_debug_images(
+                    color_image_bgr = color_image,
+                    depth_image_raw = depth_image,
+                    depth_scale = depth_scale,
+                    timestamp = timestamp
+                )
+
+                save_point_cloud(pcd, timestamp)
 
                 print("[INFO] Opening Opend3D Viewer...")
                 o3d.visualization.draw_geometries([pcd])
