@@ -100,8 +100,39 @@ def save_debug_images(color_image_bgr, depth_image_raw, depth_scale, timestamp):
     print(f"[SAVED] {depth_mm_path}")
     print(f"[SAVED] {depth_vis_path}")
 
-def save_point_cloud(pcd, timestamp):
-    ply_path = os.path.join(SAVE_DIR, f"pointcloud_{timestamp}.ply")
+def clean_point_cloud(pcd):
+  ##  Step 1:
+  ##      voxel_down_sample()
+  ##      Reduce point density.
+
+  ##  Step 2:
+  ##      remove_statistical_outlier()
+  ##      Remove isolated noisy points.
+  
+
+    raw_count = len(pcd.points)
+    print("\n[Clean Point Cloud]")
+    print(f"Raw points: {raw_count}")
+
+    # 1 mm voxel size.
+    pcd_down = pcd.voxel_down_sample(voxel_size=0.000001)
+
+    down_count = len(pcd_down.points)
+    print(f"After voxel downsample: {down_count}")
+
+    # Remove isolated outlier points.
+    pcd_clean, indices = pcd_down.remove_statistical_outlier(
+        nb_neighbors=20,
+        std_ratio=2.0
+    )
+
+    clean_count = len(pcd_clean.points)
+    print(f"After outlier removal: {clean_count}")
+
+    return pcd_clean
+
+def save_point_cloud(pcd, timestamp, prefix="pointcloud"):
+    ply_path = os.path.join(SAVE_DIR, f"{prefix}_{timestamp}.ply")
 
     ok = o3d.io.write_point_cloud(ply_path, pcd)
 
@@ -183,7 +214,10 @@ def main():
                     timestamp = timestamp
                 )
 
-                save_point_cloud(pcd, timestamp)
+                save_point_cloud(pcd, timestamp, prefix="pointcloud")
+
+                pcd_clean = clean_point_cloud(pcd)
+                save_point_cloud(pcd_clean, timestamp, prefix ="pointcloud_clean")
 
                 print("[INFO] Opening Opend3D Viewer...")
                 o3d.visualization.draw_geometries([pcd])
