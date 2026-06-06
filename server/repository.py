@@ -24,6 +24,7 @@ def get_stats() -> dict:
                 COUNT(*)                                          AS total,
                 COUNT(*) FILTER (WHERE sync_status = 'synced')     AS synced,
                 COUNT(*) FILTER (WHERE sync_status = 'local_only') AS local_only,
+                COUNT(*) FILTER (WHERE sync_status = 'uploading')  AS uploading,
                 COUNT(*) FILTER (WHERE sync_status = 'failed')     AS failed,
                 COUNT(ply_path)                                    AS with_pointcloud,
                 COUNT(clean_ply_path)                              AS with_clean

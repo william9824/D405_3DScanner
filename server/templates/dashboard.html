@@ -3,52 +3,148 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>D405 3D Scanner — Dashboard</title>
+  <title>D405 Scanner — Admin Dashboard</title>
   <style>
-    :root { --bg:#0f1419; --card:#1a212b; --line:#2a3441; --txt:#e6edf3; --muted:#8b98a5; --accent:#4493f8; }
+    :root {
+      --bg:#0f1419; --card:#1a212b; --line:#2a3441; --txt:#e6edf3; --muted:#8b98a5;
+      --accent:#4493f8; --ok:#3fb950; --warn:#e3b341; --err:#f85149; --info:#4493f8;
+    }
     * { box-sizing: border-box; }
     body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background:var(--bg); color:var(--txt); }
-    header { padding:24px 32px; border-bottom:1px solid var(--line); }
-    h1 { margin:0; font-size:20px; }
-    .sub { color:var(--muted); font-size:13px; margin-top:4px; }
-    .stats { display:flex; gap:16px; flex-wrap:wrap; padding:24px 32px; }
-    .stat { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 20px; min-width:110px; }
-    .stat .n { font-size:26px; font-weight:600; }
-    .stat .l { color:var(--muted); font-size:12px; margin-top:2px; }
-    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:18px; padding:8px 32px 40px; }
-    .card { background:var(--card); border:1px solid var(--line); border-radius:12px; overflow:hidden; }
-    .thumb { width:100%; height:180px; object-fit:cover; background:#0b0e13; display:block; }
-    .no-thumb { width:100%; height:180px; display:flex; align-items:center; justify-content:center; color:var(--muted); background:#0b0e13; font-size:13px; }
-    .body { padding:14px 16px; }
-    .sid { font-family: ui-monospace, monospace; font-size:13px; }
-    .when { color:var(--muted); font-size:12px; margin:4px 0 10px; }
-    .badge { display:inline-block; padding:2px 9px; border-radius:999px; font-size:11px; font-weight:600; }
-    .b-local_only { background:#3a2f15; color:#e3b341; }
-    .b-synced { background:#15351f; color:#3fb950; }
-    .b-failed { background:#3a1c1c; color:#f85149; }
-    .b-uploading { background:#15293a; color:#4493f8; }
-    .files { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
-    .files a { font-size:12px; color:var(--accent); text-decoration:none; border:1px solid var(--line); padding:3px 8px; border-radius:6px; }
+    header { padding:20px 32px; border-bottom:1px solid var(--line); display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; }
+    h1 { margin:0; font-size:18px; }
+    .sub { color:var(--muted); font-size:12px; }
+    .reload { margin-left:auto; font-size:12px; color:var(--accent); cursor:pointer; border:1px solid var(--line); padding:4px 10px; border-radius:6px; background:none; }
+    .reload:hover { border-color:var(--accent); }
+
+    .stats { display:flex; gap:12px; flex-wrap:wrap; padding:18px 32px; }
+    .stat { background:var(--card); border:1px solid var(--line); border-radius:9px; padding:10px 16px; min-width:92px; }
+    .stat .n { font-size:22px; font-weight:600; }
+    .stat .l { color:var(--muted); font-size:11px; margin-top:2px; text-transform:uppercase; letter-spacing:.04em; }
+    .stat.err .n { color:var(--err); }
+    .stat.ok  .n { color:var(--ok); }
+
+    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:14px; padding:6px 32px 40px; }
+    .card { background:var(--card); border:1px solid var(--line); border-radius:11px; padding:14px 16px; }
+    .card.is-failed { border-color:#5a2626; }
+
+    .top { display:flex; gap:12px; align-items:flex-start; }
+    .thumb { width:52px; height:52px; border-radius:7px; object-fit:cover; background:#0b0e13; flex:none; }
+    .no-thumb { width:52px; height:52px; border-radius:7px; background:#0b0e13; flex:none; display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:9px; text-align:center; }
+    .hd { flex:1; min-width:0; }
+    .sid { font-family: ui-monospace, monospace; font-size:13px; font-weight:600; }
+    .when { color:var(--muted); font-size:11px; margin-top:2px; }
+
+    .badge { display:inline-block; padding:2px 9px; border-radius:999px; font-size:11px; font-weight:600; white-space:nowrap; }
+    .b-local_only { background:#3a2f15; color:var(--warn); }
+    .b-synced     { background:#15351f; color:var(--ok); }
+    .b-failed     { background:#3a1c1c; color:var(--err); }
+    .b-uploading  { background:#15293a; color:var(--info); }
+
+    .meta { margin-top:12px; display:grid; grid-template-columns:auto 1fr; gap:5px 12px; font-size:12px; }
+    .meta dt { color:var(--muted); }
+    .meta dd { margin:0; font-variant-numeric: tabular-nums; }
+    .cloud .dot { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; vertical-align:middle; }
+    .cloud-full    { color:var(--ok); }    .cloud-full .dot    { background:var(--ok); }
+    .cloud-partial { color:var(--warn); }  .cloud-partial .dot { background:var(--warn); }
+    .cloud-none    { color:var(--muted); } .cloud-none .dot    { background:#48515c; }
+    .cloud-na      { color:var(--muted); } .cloud-na .dot      { background:#30363d; }
+    .retry-hot { color:var(--err); font-weight:600; }
+
+    .err-box { margin-top:10px; background:#2a1515; border:1px solid #5a2626; border-radius:7px;
+               padding:8px 10px; font-size:11.5px; color:#ffb3ad; font-family: ui-monospace, monospace;
+               white-space:pre-wrap; word-break:break-word; }
+    .err-box .lbl { color:var(--err); font-weight:600; display:block; margin-bottom:3px; }
+
+    details { margin-top:11px; border-top:1px solid var(--line); padding-top:8px; }
+    summary { cursor:pointer; font-size:11px; color:var(--muted); }
+    summary:hover { color:var(--txt); }
+    .kv { margin-top:8px; display:grid; grid-template-columns:auto 1fr; gap:4px 10px; font-size:11px; }
+    .kv dt { color:var(--muted); }
+    .kv dd { margin:0; font-family: ui-monospace, monospace; word-break:break-all; }
+    .kv dd.empty { color:#48515c; font-family:inherit; }
+    .files { margin-top:8px; display:flex; gap:6px; flex-wrap:wrap; }
+    .files a { font-size:11px; color:var(--accent); text-decoration:none; border:1px solid var(--line); padding:2px 7px; border-radius:5px; }
     .files a:hover { border-color:var(--accent); }
-    .dims { color:var(--muted); font-size:12px; margin-top:8px; }
   </style>
 </head>
 <body>
   <header>
-    <h1>D405 3D Scanner — Capture Dashboard</h1>
-    <div class="sub">Draft demo · local Postgres · <span id="conn"></span></div>
+    <h1>D405 Scanner — Admin Dashboard</h1>
+    <span class="sub" id="conn">loading…</span>
+    <button class="reload" onclick="load()">↻ refresh</button>
   </header>
   <div class="stats" id="stats"></div>
   <div class="grid" id="grid"></div>
 
   <script>
-    const fmtDims = c =>
-      (c.obj_width_mm || c.obj_height_mm || c.obj_depth_mm)
-        ? `${c.obj_width_mm ?? '–'} × ${c.obj_height_mm ?? '–'} × ${c.obj_depth_mm ?? '–'} mm`
-        : '尺寸未量度';
+    const fmtTime = t => t ? new Date(t).toLocaleString() : '—';
 
-    const fileLink = (name, label) =>
-      name ? `<a href="/files/${name}" target="_blank">${label}</a>` : '';
+    // 由 DB 欄推導 cloud availability：應上傳嘅 ply 數 vs 已有 S3 key 數
+    function cloud(c) {
+      const expected = (c.ply_path ? 1 : 0) + (c.clean_ply_path ? 1 : 0);
+      const uploaded = (c.s3_ply_key ? 1 : 0) + (c.s3_clean_ply_key ? 1 : 0);
+      if (expected === 0) return { cls:'cloud-na',      txt:'No point cloud' };
+      if (uploaded === 0) return { cls:'cloud-none',    txt:`Not uploaded (0/${expected})` };
+      if (uploaded < expected) return { cls:'cloud-partial', txt:`Partial (${uploaded}/${expected})` };
+      return { cls:'cloud-full', txt:`In cloud (${uploaded}/${expected})` };
+    }
+
+    const fileLink = (name, label) => name ? `<a href="/files/${name}" target="_blank">${label}</a>` : '';
+    const kv = (label, val) => `<dt>${label}</dt><dd class="${val ? '' : 'empty'}">${val || '—'}</dd>`;
+
+    function card(c) {
+      const cl = cloud(c);
+      const failed = c.sync_status === 'failed';
+      const retryCls = c.retry_count > 0 ? 'retry-hot' : '';
+      return `
+      <div class="card ${failed ? 'is-failed' : ''}">
+        <div class="top">
+          ${c.color_path
+            ? `<img class="thumb" src="/files/${c.color_path}" loading="lazy" />`
+            : `<div class="no-thumb">no<br>image</div>`}
+          <div class="hd">
+            <div class="sid">${c.session_id ?? '#' + c.id}</div>
+            <div class="when">captured ${fmtTime(c.captured_at)}</div>
+          </div>
+          <span class="badge b-${c.sync_status}">${c.sync_status}</span>
+        </div>
+
+        <dl class="meta">
+          <dt>cloud</dt>
+          <dd class="cloud ${cl.cls}"><span class="dot"></span>${cl.txt}</dd>
+          <dt>uploaded</dt><dd>${fmtTime(c.uploaded_at)}</dd>
+          <dt>last attempt</dt><dd>${fmtTime(c.last_sync_attempt_at)}</dd>
+          <dt>retries</dt><dd class="${retryCls}">${c.retry_count}</dd>
+        </dl>
+
+        ${failed && c.last_error
+          ? `<div class="err-box"><span class="lbl">last_error</span>${escapeHtml(c.last_error)}</div>`
+          : ''}
+
+        <details>
+          <summary>details · S3 keys · files</summary>
+          <dl class="kv">
+            ${kv('s3_ply_key', c.s3_ply_key)}
+            ${kv('s3_clean_ply_key', c.s3_clean_ply_key)}
+            ${kv('ply_path', c.ply_path)}
+            ${kv('clean_ply_path', c.clean_ply_path)}
+            ${kv('depth_mm_path', c.depth_mm_path)}
+          </dl>
+          <div class="files">
+            ${fileLink(c.color_path, 'color')}
+            ${fileLink(c.depth_vis_path, 'depth')}
+            ${fileLink(c.ply_path, 'ply')}
+            ${fileLink(c.clean_ply_path, 'ply·clean')}
+          </div>
+        </details>
+      </div>`;
+    }
+
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, m =>
+        ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[m]));
+    }
 
     async function load() {
       try {
@@ -56,37 +152,25 @@
           fetch('/api/stats').then(r => r.json()),
           fetch('/api/captures').then(r => r.json()),
         ]);
-        document.getElementById('conn').textContent = `已連線 · ${caps.length} captures`;
+        document.getElementById('conn').textContent =
+          `connected · ${caps.length} captures · ${new Date().toLocaleTimeString()}`;
 
         const S = [
-          ['Total', stats.total], ['Synced', stats.synced],
-          ['Local only', stats.local_only], ['Failed', stats.failed],
-          ['Point clouds', stats.with_pointcloud], ['Cleaned', stats.with_clean],
+          ['total', stats.total, ''],
+          ['synced', stats.synced, 'ok'],
+          ['local only', stats.local_only, ''],
+          ['uploading', stats.uploading, ''],
+          ['failed', stats.failed, stats.failed > 0 ? 'err' : ''],
+          ['point clouds', stats.with_pointcloud, ''],
+          ['cleaned', stats.with_clean, ''],
         ];
         document.getElementById('stats').innerHTML = S.map(
-          ([l, n]) => `<div class="stat"><div class="n">${n}</div><div class="l">${l}</div></div>`
+          ([l, n, cls]) => `<div class="stat ${cls}"><div class="n">${n}</div><div class="l">${l}</div></div>`
         ).join('');
 
-        document.getElementById('grid').innerHTML = caps.map(c => `
-          <div class="card">
-            ${c.color_path
-              ? `<img class="thumb" src="/files/${c.color_path}" loading="lazy" />`
-              : `<div class="no-thumb">無 color 圖</div>`}
-            <div class="body">
-              <div class="sid">${c.session_id ?? '#' + c.id}</div>
-              <div class="when">${c.captured_at ? new Date(c.captured_at).toLocaleString() : ''}</div>
-              <span class="badge b-${c.sync_status}">${c.sync_status}</span>
-              <div class="dims">${fmtDims(c)}</div>
-              <div class="files">
-                ${fileLink(c.depth_vis_path, 'depth')}
-                ${fileLink(c.ply_path, 'ply')}
-                ${fileLink(c.clean_ply_path, 'ply·clean')}
-              </div>
-            </div>
-          </div>
-        `).join('');
+        document.getElementById('grid').innerHTML = caps.map(card).join('');
       } catch (e) {
-        document.getElementById('conn').textContent = '連線失敗 — 檢查 server / DB';
+        document.getElementById('conn').textContent = 'connection failed — check server / DB';
         console.error(e);
       }
     }

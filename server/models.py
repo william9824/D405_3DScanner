@@ -33,6 +33,7 @@ class Stats(BaseModel):
     total: int
     synced: int
     local_only: int
+    uploading: int
     failed: int
     with_pointcloud: int
     with_clean: int
