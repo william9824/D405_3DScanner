@@ -1,0 +1,29 @@
+# ============================================================
+# D405 3D Scanner — Local Postgres (draft demo)
+# Run:  docker compose up -d
+# Stop: docker compose down        (data kept in named volume)
+# Reset: docker compose down -v    (wipes DB, re-runs schema.sql)
+# ============================================================
+services:
+  postgres:
+    image: postgres:16
+    container_name: d405_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-scanner_db}
+      POSTGRES_USER: ${POSTGRES_USER:-scanner}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-scanner}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # schema.sql 只喺 volume 第一次建立時自動執行
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-scanner} -d ${POSTGRES_DB:-scanner_db}"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+volumes:
+  pgdata:
