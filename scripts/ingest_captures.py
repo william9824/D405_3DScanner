@@ -13,11 +13,10 @@ from pathlib import Path
 
 import psycopg
 
-# 容許獨立執行（python -m scripts.ingest_captures）攞到 server 設定
+# Allow standalone execution (python -m scripts.ingest_captures) to access server config
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from server.config import CAPTURES_DIR, DATABASE_URL  # noqa: E402
 
-# 注意 alternation 次序：pointcloud_clean 要喺 pointcloud 前面
 FILENAME_RE = re.compile(
     r"^(?P<kind>color|depth_mm|depth_vis|pointcloud_clean|pointcloud)"
     r"_(?P<ts>\d{8}_\d{6})\.(?:png|ply)$"

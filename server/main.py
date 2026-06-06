@@ -22,14 +22,14 @@ TEMPLATES_DIR = Path(__file__).resolve().parent / "templates"
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     pool.open()
-    pool.wait()  # 確認 DB 連得到先 serve
+    pool.wait()  # DB connection check  
     yield
     pool.close()
 
 
 app = FastAPI(title="D405 3D Scanner — Demo Server", lifespan=lifespan)
 
-# 直接 serve capture 文件（圖片 + ply）
+# serve capture files
 if CAPTURES_DIR.is_dir():
     app.mount("/files", StaticFiles(directory=str(CAPTURES_DIR)), name="files")
 

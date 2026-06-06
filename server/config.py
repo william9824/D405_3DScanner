@@ -23,3 +23,19 @@ def _resolve_captures_dir() -> Path:
 
 
 CAPTURES_DIR = _resolve_captures_dir()
+
+
+# ------------------------------------------------------------------
+# S3 / cloud upload 
+# Local cloud MinIO（S3-compatible）；edit endpoint + credentials -> real AWS S3。
+#   - MinIO 本地:  S3_ENDPOINT_URL=http://localhost:9000
+#   - AWS    :  S3_ENDPOINT_URL blank（boto3 use AWS official endpoint）
+# ------------------------------------------------------------------
+S3_ENDPOINT_URL = os.getenv("S3_ENDPOINT_URL", "http://localhost:9000") or None
+S3_BUCKET = os.getenv("S3_BUCKET", "scanner-pointclouds")
+S3_REGION = os.getenv("AWS_REGION", "us-east-1")
+S3_ACCESS_KEY = os.getenv("AWS_ACCESS_KEY_ID", "minioadmin")
+S3_SECRET_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", "minioadmin")
+
+# Retry count up to 3 when uploading to S3（state machine）
+MAX_UPLOAD_RETRIES = int(os.getenv("MAX_UPLOAD_RETRIES", "3"))

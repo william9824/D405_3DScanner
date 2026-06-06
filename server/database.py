@@ -4,7 +4,7 @@ from psycopg_pool import ConnectionPool
 
 from .config import DATABASE_URL
 
-# open=False: pool 喺 FastAPI lifespan 先正式 open，避免 import 時就連線
+# open=False: pool open after FastAPI startup, not at import time
 pool = ConnectionPool(
     DATABASE_URL,
     min_size=1,

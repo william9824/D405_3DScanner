@@ -17,13 +17,53 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
-      # schema.sql 只喺 volume 第一次建立時自動執行
+      # schema.sql automatically executed on first run to initialize DB
       - ./db/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-scanner} -d ${POSTGRES_DB:-scanner_db}"]
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${POSTGRES_USER:-scanner} -d ${POSTGRES_DB:-scanner_db}",
+        ]
       interval: 5s
       timeout: 3s
       retries: 5
 
+  # S3-compatible local cloud for testing (prevent AWS token consumption) (MinIO)  
+  # No need this for real AWS S3
+  minio:
+    image: minio/minio:latest
+    container_name: d405_minio
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${AWS_ACCESS_KEY_ID:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${AWS_SECRET_ACCESS_KEY:-minioadmin}
+    ports:
+      - "9000:9000"   # S3 API
+      - "9001:9001"   # web console (http://localhost:9001)
+    volumes:
+      - minio_data:/data
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # Init container to create S3 bucket if not exists (runs once after MinIO is healthy)
+  minio-init:
+    image: minio/mc:latest
+    container_name: d405_minio_init
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint: >
+      /bin/sh -c "
+      mc alias set local http://minio:9000 ${AWS_ACCESS_KEY_ID:-minioadmin} ${AWS_SECRET_ACCESS_KEY:-minioadmin} &&
+      mc mb --ignore-existing local/${S3_BUCKET:-scanner-pointclouds} &&
+      echo 'bucket ready: ${S3_BUCKET:-scanner-pointclouds}'
+      "
+
 volumes:
   pgdata:
+  minio_data:
