@@ -115,7 +115,7 @@ def clean_point_cloud(pcd):
     print(f"Raw points: {raw_count}")
 
     # 1 mm voxel size.
-    pcd_down = pcd.voxel_down_sample(voxel_size=0.000001)
+    pcd_down = pcd.voxel_down_sample(voxel_size=0.001)
 
     down_count = len(pcd_down.points)
     print(f"After voxel downsample: {down_count}")
@@ -172,8 +172,8 @@ def main():
 
             align_frames = align.process(frames)
 
-            depth_frame = frames.get_depth_frame()
-            color_frame = frames.get_color_frame()
+            depth_frame = align_frames.get_depth_frame()
+            color_frame = align_frames.get_color_frame()
 
             if not depth_frame or not color_frame:
                 print("[WARN] Missing frame")
@@ -190,7 +190,7 @@ def main():
             key = cv2.waitKey(1)
 
             if key == 27:
-                break;
+                break
             if key == 32:
                 print(f"\n[INFO] Creating poing cloud...")
 
