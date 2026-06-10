@@ -203,6 +203,32 @@ def clean_point_cloud(pcd):
 
     return pcd_clean
 
+def remove_plane(pcd, distance_threshold=0.005, ransac_n=3, num_iterations=1000):
+    print("\n[Plane Removal]")
+
+    if len(pcd.points) < 100:
+        print("[WARN] Not enough points for plane removal.")
+        return pcd, None
+
+    plane_model, inliers = pcd.segment_plane(
+        distance_threshold=distance_threshold,
+        ransac_n=ransac_n,
+        num_iterations=num_iterations
+    )
+
+    a, b, c, d = plane_model
+
+    print(f"Plane equation: {a:.4f}x + {b:.4f}y + {c:.4f}z + {d:.4f} = 0")
+    print(f"Plane inliers: {len(inliers)}")
+
+    plane_cloud = pcd.select_by_index(inliers)
+    object_cloud = pcd.select_by_index(inliers, invert=True)
+
+    print(f"Object points after plane removal: {len(object_cloud.points)}")
+
+
+    return object_cloud, plane_cloud
+
 def save_point_cloud(pcd, timestamp, prefix="pointcloud"):
     ply_path = os.path.join(SAVE_DIR, f"{prefix}_{timestamp}.ply")
 
@@ -310,6 +336,9 @@ def main():
 
                 pcd_clean = clean_point_cloud(pcd)
                 save_point_cloud(pcd_clean, timestamp, prefix="pointcloud_roi_clean")
+
+                pcd_object, pcd_plane = remove_plane(pcd_clean)
+                save_point_cloud(pcd_object, timestamp, prefix="pointcloud_object")
 
                 print("[INFO] Opening Open3D Viewer...")
                 o3d.visualization.draw_geometries([pcd_clean])
