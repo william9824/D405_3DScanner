@@ -1,5 +1,6 @@
 import os
 from datetime import datetime
+from pathlib import Path
 
 import pyrealsense2 as rs
 import cv2
@@ -9,13 +10,28 @@ import open3d as o3d
 
 WIDTH = 640
 HEIGHT = 480
+ROI_SCALE = 0.6
 FPS = 30 
 
 MIN_DEPTH_M = 0.07
 MAX_DEPTH_M = 0.50
 
-SAVE_DIR = "captures"
-os.makedirs(SAVE_DIR, exist_ok = True)
+# localCaptures: 
+#   Temporary local testing data.
+#   main_capture.py writes here by default
+#
+# captures:
+#   Clean / selected data only
+#   Move useful session here manually before cloud/server upload.
+
+
+LOCAL_SAVE_DIR = "localCaptures"
+CLOUD_SAVE_DIR = "captures"
+
+SAVE_DIR = LOCAL_SAVE_DIR
+
+os.makedirs(LOCAL_SAVE_DIR, exist_ok=True)
+os.makedirs(CLOUD_SAVE_DIR, exist_ok = True)
 
 def make_depth_colormap(depth_image, depth_scale):
     
@@ -51,9 +67,66 @@ def get_open3d_intrinsic(color_frame):
         intr.ppy
     )
 
+def crop_center_roi(color_image, depth_image, roi_scale= 0.6):
+    h, w = depth_image.shape
+
+    x1, y1, x2, y2 = get_center_roi_bounds(w, h, roi_scale)
+
+    color_roi = np.ascontiguousarray(color_image[y1:y2, x1:x2])
+    depth_roi = np.ascontiguousarray(depth_image[y1:y2, x1:x2])
+
+    print(f"\n[ROI]")
+    print(f"x: {x1} -> {x2}")
+    print(f"y: {y1} -> {y2}")
+    print(f"size: {x2 - x1} x {y2 - y1}")
+
+    return color_roi, depth_roi, x1, y1, x2, y2
+
+def get_center_roi_bounds(image_width, image_height, roi_scale=0.6):
+    roi_w = int(image_width * roi_scale)
+    roi_h = int(image_height * roi_scale)
+
+    x1 = (image_width - roi_w) // 2
+    y1 = (image_height - roi_h) // 2
+    x2 = x1 + roi_w
+    y2 = y1 + roi_h
+
+    return x1, y1, x2, y2
+
+def create_roi_intrinsic(color_frame, x_offset, y_offset, roi_width, roi_height):
+
+    intr = color_frame.profile.as_video_stream_profile().intrinsics
+
+    roi_fx = intr.fx
+    roi_fy = intr.fy
+    roi_cx = intr.ppx - x_offset
+    roi_cy = intr.ppy - y_offset
+
+    print(f"\n[ROI Camera Intrinsic]")
+    print(f"width : {roi_width}")
+    print(f"height: {roi_height}")
+    print(f"fx    : {roi_fx}")
+    print(f"fy    : {roi_fy}")
+    print(f"cx    : {roi_cx}")
+    print(f"cy    : {roi_cy}")
+
+    return o3d.camera.PinholeCameraIntrinsic(
+        roi_width,
+        roi_height,
+        roi_fx,
+        roi_fy,
+        roi_cx,
+        roi_cy
+    )
+
 
 def create_point_cloud(color_image_bgr, depth_image_raw, depth_scale, intrinsic):
+
+    color_image_bgr = np.ascontiguousarray(color_image_bgr)
+    depth_image_raw = np.ascontiguousarray(depth_image_raw)
+
     color_image_rgb = cv2.cvtColor(color_image_bgr, cv2.COLOR_BGR2RGB)
+    color_image_rgb = np.ascontiguousarray(color_image_rgb)
 
     color_o3d = o3d.geometry.Image(color_image_rgb)
     depth_o3d = o3d.geometry.Image(depth_image_raw)
@@ -73,7 +146,6 @@ def create_point_cloud(color_image_bgr, depth_image_raw, depth_scale, intrinsic)
         intrinsic=intrinsic
     )
 
-    # Flip for easier viewing in Open3D
     pcd.transform([
         [1,  0,  0, 0],
         [0, -1,  0, 0],
@@ -184,7 +256,15 @@ def main():
 
             depth_colormap = make_depth_colormap(depth_image, depth_scale)
 
-            combined = np.hstack((color_image, depth_colormap))
+            preview_color = color_image.copy()
+            preview_depth = depth_colormap.copy()
+
+            x1, y1, x2, y2 = get_center_roi_bounds(WIDTH, HEIGHT, ROI_SCALE)
+
+            cv2.rectangle(preview_color, (x1, y1), (x2, y2), (0, 255, 0), 2)          
+            cv2.rectangle(preview_depth, (x1, y1), (x2, y2), (0, 255, 0), 2)
+            
+            combined = np.hstack((preview_color, preview_depth))
             cv2.imshow("D405 RGB | Depth", combined) 
 
             key = cv2.waitKey(1)
@@ -192,35 +272,47 @@ def main():
             if key == 27:
                 break
             if key == 32:
-                print(f"\n[INFO] Creating poing cloud...")
+                print(f"\n[INFO] Creating point cloud from center ROI...")
 
-                intrinsic = get_open3d_intrinsic(color_frame)
-
-                pcd = create_point_cloud(
-                    color_image_bgr = color_image,
-                    depth_image_raw = depth_image,
-                    depth_scale = depth_scale,
-                    intrinsic = intrinsic
+                color_roi, depth_roi, x1, y1, x2, y2 = crop_center_roi(
+                    color_image=color_image,
+                    depth_image=depth_image,
+                    roi_scale=ROI_SCALE
                 )
 
-                print(f"\n[INFO] Number of points: {len(pcd.points)}")
+                roi_intrinsic = create_roi_intrinsic(
+                    color_frame=color_frame,
+                    x_offset=x1,
+                    y_offset=y1,
+                    roi_width=depth_roi.shape[1],
+                    roi_height=depth_roi.shape[0]
+                )
+
+                pcd = create_point_cloud(
+                    color_image_bgr=color_roi,
+                    depth_image_raw=depth_roi,
+                    depth_scale=depth_scale,
+                    intrinsic=roi_intrinsic
+                )
+
+                print(f"\n[INFO] Number of ROI points: {len(pcd.points)}")
 
                 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
                 save_debug_images(
-                    color_image_bgr = color_image,
-                    depth_image_raw = depth_image,
-                    depth_scale = depth_scale,
-                    timestamp = timestamp
+                    color_image_bgr=color_roi,
+                    depth_image_raw=depth_roi,
+                    depth_scale=depth_scale,
+                    timestamp=timestamp
                 )
 
-                save_point_cloud(pcd, timestamp, prefix="pointcloud")
+                save_point_cloud(pcd, timestamp, prefix="pointcloud_roi")
 
                 pcd_clean = clean_point_cloud(pcd)
-                save_point_cloud(pcd_clean, timestamp, prefix ="pointcloud_clean")
+                save_point_cloud(pcd_clean, timestamp, prefix="pointcloud_roi_clean")
 
-                print("[INFO] Opening Opend3D Viewer...")
-                o3d.visualization.draw_geometries([pcd])
+                print("[INFO] Opening Open3D Viewer...")
+                o3d.visualization.draw_geometries([pcd_clean])
                 
     finally:
         print("[INFO] Stopping pipeline...")
