@@ -16,6 +16,24 @@ FPS = 30
 MIN_DEPTH_M = 0.07
 MAX_DEPTH_M = 0.50
 
+CAMERA_PRESETS = {
+    "D405": {
+        "min_depth_m": 0.07,
+        "max_depth_m": 0.50,
+        "roi_scale": 0.60,
+    },
+    "D455F": {
+        "min_depth_m": 0.30,
+        "max_depth_m": 2.00,
+        "roi_scale": 0.60,
+    },
+    "DEFAULT": {
+        "min_depth_m": 0.10,
+        "max_depth_m": 1.50,
+        "roi_scale": 0.60,
+    },
+}
+
 # localCaptures: 
 #   Temporary local testing data.
 #   main_capture.py writes here by default
@@ -32,6 +50,51 @@ SAVE_DIR = LOCAL_SAVE_DIR
 
 os.makedirs(LOCAL_SAVE_DIR, exist_ok=True)
 os.makedirs(CLOUD_SAVE_DIR, exist_ok = True)
+
+def detect_camera_name(profile):
+    device = profile.get_device()
+
+    try:
+        name = device.get_info(rs.camera_info.name)
+    except Exception:
+        name = "Unknown"
+
+    try:
+        serial = device.get_info(rs.camera_info.serial_number)
+    except Exception:
+        serial = "Unknown"
+
+    print("\n[Device Info]")
+    print(f"Name  : {name}")
+    print(f"Serial: {serial}")
+
+    return name
+
+
+def apply_camera_preset(camera_name):
+    global MIN_DEPTH_M, MAX_DEPTH_M, ROI_SCALE
+
+    name_upper = camera_name.upper()
+
+    if "D405" in name_upper:
+        preset = CAMERA_PRESETS["D405"]
+        preset_name = "D405"
+    elif "D455" in name_upper:
+        preset = CAMERA_PRESETS["D455F"]
+        preset_name = "D455F"
+    else:
+        preset = CAMERA_PRESETS["DEFAULT"]
+        preset_name = "DEFAULT"
+
+    MIN_DEPTH_M = preset["min_depth_m"]
+    MAX_DEPTH_M = preset["max_depth_m"]
+    ROI_SCALE = preset["roi_scale"]
+
+    print("\n[Camera Preset]")
+    print(f"Preset     : {preset_name}")
+    print(f"Min depth  : {MIN_DEPTH_M} m")
+    print(f"Max depth  : {MAX_DEPTH_M} m")
+    print(f"ROI scale  : {ROI_SCALE}")
 
 def make_depth_colormap(depth_image, depth_scale):
     
@@ -254,6 +317,10 @@ def main():
     profile = pipeline.start(config)
     align = rs.align(rs.stream.color)
 
+    camera_name = detect_camera_name(profile)
+    apply_camera_preset(camera_name)
+
+
     depth_sensor = profile.get_device().first_depth_sensor()
     depth_scale = depth_sensor.get_depth_scale()
 
@@ -291,7 +358,7 @@ def main():
             cv2.rectangle(preview_depth, (x1, y1), (x2, y2), (0, 255, 0), 2)
             
             combined = np.hstack((preview_color, preview_depth))
-            cv2.imshow("D405 RGB | Depth", combined) 
+            cv2.imshow("RealSense RGB | Depth", combined) 
 
             key = cv2.waitKey(1)
 
