@@ -1,0 +1,16 @@
+{
+  "sample_id": "20260612_165041_116",
+  "label": "open_palm",
+  "rgb_path": "datasets\\gestures\\open_palm\\20260612_165041_116_rgb.png",
+  "depth_gray_path": "datasets\\gestures\\open_palm\\20260612_165041_116_depth_gray.png",
+  "crop": {
+    "x1": 160,
+    "y1": 80,
+    "x2": 480,
+    "y2": 400,
+    "crop_size": 320
+  },
+  "created_at": 1781254241.1211188,
+  "camera": "Intel RealSense D405",
+  "notes": "center ROI hand gesture sample"
+}

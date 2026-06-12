@@ -1,0 +1,16 @@
+{
+  "sample_id": "20260612_172110_456",
+  "label": "point",
+  "rgb_path": "datasets\\gestures\\point\\20260612_172110_456_rgb.png",
+  "depth_gray_path": "datasets\\gestures\\point\\20260612_172110_456_depth_gray.png",
+  "crop": {
+    "x1": 160,
+    "y1": 80,
+    "x2": 480,
+    "y2": 400,
+    "crop_size": 320
+  },
+  "created_at": 1781256070.4601696,
+  "camera": "Intel RealSense D405",
+  "notes": "center ROI hand gesture sample"
+}

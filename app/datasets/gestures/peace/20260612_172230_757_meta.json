@@ -1,0 +1,16 @@
+{
+  "sample_id": "20260612_172230_757",
+  "label": "peace",
+  "rgb_path": "datasets\\gestures\\peace\\20260612_172230_757_rgb.png",
+  "depth_gray_path": "datasets\\gestures\\peace\\20260612_172230_757_depth_gray.png",
+  "crop": {
+    "x1": 160,
+    "y1": 80,
+    "x2": 480,
+    "y2": 400,
+    "crop_size": 320
+  },
+  "created_at": 1781256150.7576249,
+  "camera": "Intel RealSense D405",
+  "notes": "center ROI hand gesture sample"
+}
