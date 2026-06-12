@@ -1,0 +1,37 @@
+{
+  "timestamp": "20260612_141708",
+  "camera": {
+    "name": "Intel RealSense D405",
+    "preset": "D405",
+    "width": 640,
+    "height": 480,
+    "fps": 30,
+    "min_depth_m": 0.07,
+    "max_depth_m": 0.5
+  },
+  "roi": {
+    "scale": 0.6,
+    "x1": 128,
+    "y1": 96,
+    "x2": 512,
+    "y2": 384,
+    "width": 384,
+    "height": 288
+  },
+  "measurement": {
+    "width_mm": 309.6521879657117,
+    "height_mm": 236.62559455777216,
+    "depth_mm": 298.99999499320984,
+    "point_count": 16771
+  },
+  "files": {
+    "color": "color_20260612_141708.png",
+    "depth_mm": "depth_mm_20260612_141708.png",
+    "depth_vis": "depth_vis_20260612_141708.png",
+    "depth_gray": "depth_gray_20260612_141708.png",
+    "pointcloud_roi": "pointcloud_roi_20260612_141708.ply",
+    "pointcloud_clean": "pointcloud_roi_clean_20260612_141708.ply",
+    "pointcloud_object": "pointcloud_object_20260612_141708.ply",
+    "pointcloud_plane": "pointcloud_plane_20260612_141708.ply"
+  }
+}
