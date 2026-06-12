@@ -2,10 +2,13 @@ import os
 from datetime import datetime
 from pathlib import Path
 
+import json
+
 import pyrealsense2 as rs
 import cv2
 import numpy as np
 import open3d as o3d
+
 
 
 WIDTH = 640
@@ -266,7 +269,35 @@ def clean_point_cloud(pcd):
 
     return pcd_clean
 
-def remove_plane(pcd, distance_threshold=0.005, ransac_n=3, num_iterations=1000):
+def compute_bounding_box(pcd):
+    print(f"\nBounding box")
+
+    if len(pcd.points) < 10:
+        print(f"[WARN] Not enough points for creating bounding box.")
+        return None, None
+    
+    bbox = pcd.get_axis_aligned_bounding_box()
+    extent = bbox.get_extent()
+
+    width_m = extent[0]
+    height_m = extent[1]
+    depth_m = extent[2]
+
+    measurement = {
+        "width_mm" : float(width_m * 1000.0),
+        "height_mm" : float(height_m * 1000.0),
+        "depth_mm" : float(depth_m * 1000.0),
+        "point_count" : len(pcd.points),
+    }
+
+    print(f"width: {measurement['width_mm']:.2f} mm")
+    print(f"height: {measurement['height_mm']:.2f} mm")
+    print(f"depth: {measurement['depth_mm']:.2f} mm")
+    print(f"points: {measurement['point_count']}")
+
+    return bbox, measurement
+
+def remove_plane(pcd, distance_threshold=0.003, ransac_n=3, num_iterations=1000):
     print("\n[Plane Removal]")
 
     if len(pcd.points) < 100:
@@ -304,6 +335,14 @@ def save_point_cloud(pcd, timestamp, prefix="pointcloud"):
 
     return ply_path
 
+def save_measurement_json(measurement, timestamp):
+    json_path = os.path.join(SAVE_DIR, f"measurement_{timestamp}.json")
+
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump(measurement, f, indent= 2)
+    
+    print(f"[SAVED] {json_path}")
+    return json_path
 
 def main():
     pipeline = rs.pipeline()
@@ -407,8 +446,23 @@ def main():
                 pcd_object, pcd_plane = remove_plane(pcd_clean)
                 save_point_cloud(pcd_object, timestamp, prefix="pointcloud_object")
 
+                bbox, measurement = compute_bounding_box(pcd_object)
+
+                if bbox is not None:
+                    bbox.color= (0, 1, 0)
+
+                if measurement is not None:
+                    save_measurement_json(measurement, timestamp)
+
+                if pcd_plane is not None:
+                    save_point_cloud(pcd_plane, timestamp, prefix="pointcloud_plane")
+
                 print("[INFO] Opening Open3D Viewer...")
-                o3d.visualization.draw_geometries([pcd_clean])
+
+                if bbox is not None:
+                    o3d.visualization.draw_geometries([pcd_object, bbox])
+                else:
+                    o3d.visualization.draw_geometries([pcd_object])
                 
     finally:
         print("[INFO] Stopping pipeline...")
