@@ -54,6 +54,23 @@ SAVE_DIR = LOCAL_SAVE_DIR
 os.makedirs(LOCAL_SAVE_DIR, exist_ok=True)
 os.makedirs(CLOUD_SAVE_DIR, exist_ok = True)
 
+def configure_save_dirs(camera_preset_name):
+    global SAVE_DIR
+
+    local_camera_dir = os.path.join(LOCAL_SAVE_DIR, camera_preset_name)
+    cloud_camera_dir = os.path.join(CLOUD_SAVE_DIR, camera_preset_name)
+
+    os.makedirs(local_camera_dir, exist_ok=True)
+    os.makedirs(cloud_camera_dir, exist_ok=True)
+
+    SAVE_DIR = local_camera_dir
+
+    print(f"\n[SAVE Directory]")
+    print(f"Local save dir: {local_camera_dir}")
+    print(f"Cloud save dir: {cloud_camera_dir}")
+
+    return local_camera_dir, cloud_camera_dir
+
 def detect_camera_name(profile):
     device = profile.get_device()
 
@@ -99,6 +116,9 @@ def apply_camera_preset(camera_name):
     print(f"Max depth  : {MAX_DEPTH_M} m")
     print(f"ROI scale  : {ROI_SCALE}")
 
+    return preset_name
+
+
 def make_depth_colormap(depth_image, depth_scale):
     
     depth_m = depth_image * depth_scale
@@ -112,6 +132,17 @@ def make_depth_colormap(depth_image, depth_scale):
     depth_colormap[depth_image == 0] = 0
 
     return depth_colormap
+
+def make_depth_grayscale(depth_image, depth_scale):
+
+    depth_m = depth_image * depth_scale
+    
+    depth_vis = np.clip(depth_m, MIN_DEPTH_M, MAX_DEPTH_M)
+    depth_gray = ((depth_vis - MIN_DEPTH_M) / (MAX_DEPTH_M - MIN_DEPTH_M) * 255).astype(np.uint8)
+
+    depth_gray[depth_image ==0] = 0
+
+    return depth_gray
 
 def get_open3d_intrinsic(color_frame):
     intr = color_frame.profile.as_video_stream_profile().intrinsics
@@ -225,6 +256,7 @@ def save_debug_images(color_image_bgr, depth_image_raw, depth_scale, timestamp):
     color_path = os.path.join(SAVE_DIR, f"color_{timestamp}.png")
     depth_mm_path = os.path.join(SAVE_DIR, f"depth_mm_{timestamp}.png")
     depth_vis_path = os.path.join(SAVE_DIR, f"depth_vis_{timestamp}.png")
+    depth_gray_path = os.path.join(SAVE_DIR, f"depth_gray_{timestamp}.png")
 
     cv2.imwrite(color_path, color_image_bgr)
 
@@ -234,9 +266,20 @@ def save_debug_images(color_image_bgr, depth_image_raw, depth_scale, timestamp):
     depth_vis = make_depth_colormap(depth_image_raw, depth_scale)
     cv2.imwrite(depth_vis_path, depth_vis)
 
+    depth_gray = make_depth_grayscale(depth_image_raw, depth_scale)
+    cv2.imwrite(depth_gray_path, depth_gray)
+
     print(f"[SAVED] {color_path}")
     print(f"[SAVED] {depth_mm_path}")
     print(f"[SAVED] {depth_vis_path}")
+    print(f"[SAVED] {depth_gray_path}")
+
+    return {
+        "color" : os.path.basename(color_path),
+        "depth_mm" : os.path.basename(depth_mm_path),
+        "depth_vis" : os.path.basename(depth_vis_path),
+        "depth_gray" : os.path.basename(depth_gray_path)
+    }
 
 def clean_point_cloud(pcd):
   ##  Step 1:
@@ -344,6 +387,34 @@ def save_measurement_json(measurement, timestamp):
     print(f"[SAVED] {json_path}")
     return json_path
 
+def save_metadata_json(
+    timestamp, camera_name, 
+    camera_preset_name, roi_info,
+    measurement, files
+):
+    metadata = {
+        "timestamp": timestamp,
+        "camera" : {
+            "name": camera_name,
+            "preset": camera_preset_name,
+            "width": WIDTH,
+            "height": HEIGHT,
+            "fps": FPS,
+            "min_depth_m": MIN_DEPTH_M,
+            "max_depth_m": MAX_DEPTH_M
+        },
+        "roi": roi_info,
+        "measurement": measurement,
+        "files":files,
+    }
+    json_path = os.path.join(SAVE_DIR, f"metadata_{timestamp}.json")
+
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump(metadata, f, indent=2)
+
+    print(f"[SAVED] {json_path}")
+    return json_path
+
 def main():
     pipeline = rs.pipeline()
     config = rs.config()
@@ -357,7 +428,8 @@ def main():
     align = rs.align(rs.stream.color)
 
     camera_name = detect_camera_name(profile)
-    apply_camera_preset(camera_name)
+    camera_preset_name = apply_camera_preset(camera_name)
+    configure_save_dirs(camera_preset_name)
 
 
     depth_sensor = profile.get_device().first_depth_sensor()
@@ -387,17 +459,29 @@ def main():
             color_image = np.asanyarray(color_frame.get_data())
 
             depth_colormap = make_depth_colormap(depth_image, depth_scale)
+            depth_gray = make_depth_grayscale(depth_image, depth_scale)
 
+            # Convert grayscale depth to 3-channel BGR
+            # So it can be stacked witg RGB depth color
+            depth_gray_bgr = cv2.cvtColor(depth_gray, cv2.COLOR_GRAY2BGR)
+            
             preview_color = color_image.copy()
             preview_depth = depth_colormap.copy()
+            preview_depth_gray = depth_gray_bgr.copy()
 
             x1, y1, x2, y2 = get_center_roi_bounds(WIDTH, HEIGHT, ROI_SCALE)
 
+            cv2.putText(preview_color, "RGB", (20, 35), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 255, 0), 2)
+            cv2.putText(preview_depth, "DEPTH", (20, 35), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 255, 0), 2)
+            cv2.putText(preview_depth_gray, "DEPTH GRAY", (20, 35), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 255, 0), 2)
+
+
             cv2.rectangle(preview_color, (x1, y1), (x2, y2), (0, 255, 0), 2)          
             cv2.rectangle(preview_depth, (x1, y1), (x2, y2), (0, 255, 0), 2)
+            cv2.rectangle(preview_depth_gray, (x1, y1), (x2, y2), (0, 255, 0), 2)
             
-            combined = np.hstack((preview_color, preview_depth))
-            cv2.imshow("RealSense RGB | Depth", combined) 
+            combined = np.hstack((preview_color, preview_depth, preview_depth_gray))
+            cv2.imshow("RealSense RGB | Depth Color | Depth Gray", combined) 
 
             key = cv2.waitKey(1)
 
@@ -431,31 +515,59 @@ def main():
 
                 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
-                save_debug_images(
+                image_file = save_debug_images(
                     color_image_bgr=color_roi,
                     depth_image_raw=depth_roi,
                     depth_scale=depth_scale,
                     timestamp=timestamp
                 )
 
-                save_point_cloud(pcd, timestamp, prefix="pointcloud_roi")
+                pcd_roi_path = save_point_cloud(pcd, timestamp, prefix="pointcloud_roi")
 
                 pcd_clean = clean_point_cloud(pcd)
-                save_point_cloud(pcd_clean, timestamp, prefix="pointcloud_roi_clean")
+                pcd_clean_path = save_point_cloud(pcd_clean, timestamp, prefix="pointcloud_roi_clean")
 
                 pcd_object, pcd_plane = remove_plane(pcd_clean)
-                save_point_cloud(pcd_object, timestamp, prefix="pointcloud_object")
+                pcd_object_path = save_point_cloud(pcd_object, timestamp, prefix="pointcloud_object")
+
+                pcd_plane_path = None
+                if pcd_plane is not None:
+                    pcd_plane_path = save_point_cloud(pcd_plane, timestamp, prefix="pointcloud_plane")
 
                 bbox, measurement = compute_bounding_box(pcd_object)
 
                 if bbox is not None:
                     bbox.color= (0, 1, 0)
 
+                roi_info = {
+                    "scale" : ROI_SCALE,
+                    "x1": x1,
+                    "y1": y1,
+                    "x2": x2,
+                    "y2": y2,
+                    "width": x2 - x1,
+                    "height": y2 - y1,
+                }
+
+                files = {
+                    **image_file,
+                    "pointcloud_roi": os.path.basename(pcd_roi_path),
+                    "pointcloud_clean": os.path.basename(pcd_clean_path),
+                    "pointcloud_object": os.path.basename(pcd_object_path),
+                    "pointcloud_plane": os.path.basename(pcd_plane_path) if pcd_plane_path else None,
+                }
+
                 if measurement is not None:
                     save_measurement_json(measurement, timestamp)
 
-                if pcd_plane is not None:
-                    save_point_cloud(pcd_plane, timestamp, prefix="pointcloud_plane")
+                    save_metadata_json(
+                        timestamp =timestamp,
+                        camera_name = camera_name,
+                        camera_preset_name = camera_preset_name,
+                        roi_info = roi_info,
+                        measurement = measurement,
+                        files = files,
+                    )
 
                 print("[INFO] Opening Open3D Viewer...")
 
