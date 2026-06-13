@@ -1,0 +1,55 @@
+{
+  "project": "D455F Applied RGB-D Intelligence Lab",
+  "full_dataset_root": "datasets/gestures",
+  "public_subset_root": "datasets_sample/gestures",
+  "samples_per_label": 10,
+  "labels": {
+    "open_palm": {
+      "full_count": 510,
+      "public_subset_count": 10,
+      "missing_during_export": 0,
+      "avg_valid_depth_ratio_full": 0.2899,
+      "avg_mean_depth_m_full": 0.8319,
+      "avg_valid_depth_ratio_subset": 0.3013,
+      "avg_mean_depth_m_subset": 0.8309
+    },
+    "fist": {
+      "full_count": 510,
+      "public_subset_count": 10,
+      "missing_during_export": 0,
+      "avg_valid_depth_ratio_full": 0.2561,
+      "avg_mean_depth_m_full": 0.857,
+      "avg_valid_depth_ratio_subset": 0.2916,
+      "avg_mean_depth_m_subset": 0.8481
+    },
+    "pinch": {
+      "full_count": 510,
+      "public_subset_count": 10,
+      "missing_during_export": 0,
+      "avg_valid_depth_ratio_full": 0.2337,
+      "avg_mean_depth_m_full": 0.8594,
+      "avg_valid_depth_ratio_subset": 0.2367,
+      "avg_mean_depth_m_subset": 0.8413
+    },
+    "point": {
+      "full_count": 510,
+      "public_subset_count": 10,
+      "missing_during_export": 0,
+      "avg_valid_depth_ratio_full": 0.3337,
+      "avg_mean_depth_m_full": 0.9132,
+      "avg_valid_depth_ratio_subset": 0.3743,
+      "avg_mean_depth_m_subset": 0.926
+    },
+    "peace": {
+      "full_count": 540,
+      "public_subset_count": 10,
+      "missing_during_export": 0,
+      "avg_valid_depth_ratio_full": 0.2615,
+      "avg_mean_depth_m_full": 0.8668,
+      "avg_valid_depth_ratio_subset": 0.2313,
+      "avg_mean_depth_m_subset": 0.8623
+    }
+  },
+  "total_full_samples": 2580,
+  "total_public_subset_samples": 50
+}

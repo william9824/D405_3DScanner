@@ -51,3 +51,18 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Full local RGB-D datasets
+apps/datasets/
+datasets/gestures/
+
+# RealSense generated local captures
+apps/localCaptures/
+localCaptures/
+
+# Large generated files / ML artifacts
+*.ply
+*.bag
+*.pth
+*.pt
+*.onnx
+*.ckpt

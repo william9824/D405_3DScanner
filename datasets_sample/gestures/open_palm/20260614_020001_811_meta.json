@@ -1,0 +1,47 @@
+{
+  "sample_id": "20260614_020001_811",
+  "project": "D455F Applied RGB-D Intelligence Lab",
+  "capture_type": "hand_gesture_dataset",
+  "label": "open_palm",
+  "camera_model": "D455F",
+  "device": {
+    "name": "Intel RealSense D455F",
+    "serial_number": "redacted_for_public_demo",
+    "firmware_version": "5.15.1.55"
+  },
+  "stream": {
+    "width": 640,
+    "height": 480,
+    "fps": 30,
+    "depth_scale": 0.0010000000474974513
+  },
+  "files": {
+    "rgb_crop": "datasets_sample/gestures/open_palm/20260614_020001_811_rgb.png",
+    "depth_gray_crop": "datasets_sample/gestures/open_palm/20260614_020001_811_depth_gray.png",
+    "metadata": "datasets_sample/gestures/open_palm/20260614_020001_811_meta.json"
+  },
+  "crop": {
+    "x1": 160,
+    "y1": 80,
+    "x2": 480,
+    "y2": 400,
+    "width": 320,
+    "height": 320,
+    "crop_size": 320
+  },
+  "depth": {
+    "valid_depth_ratio": 0.3498,
+    "valid_pixels": 35822,
+    "total_pixels": 102400,
+    "mean_depth_m": 0.8278,
+    "median_depth_m": 0.771,
+    "min_depth_m": 0.5,
+    "max_depth_m": 1.499,
+    "min_valid_depth_m": 0.5,
+    "max_valid_depth_m": 1.5
+  },
+  "created_at_unix": 1781373601.8188496,
+  "created_at_local": "2026-06-14 02:00:01",
+  "notes": "Public demo subset sample. Full dataset is kept local.",
+  "public_subset": true
+}
