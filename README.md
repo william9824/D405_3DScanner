@@ -64,6 +64,31 @@ Metadata includes:
 The full dataset is kept local and is not committed to GitHub.
 A small public demo subset is included under `datasets_sample/`.
 
+## RGB Gesture Classifier Baseline
+
+A first RGB-only CNN baseline was trained on the D455F hand gesture dataset.
+
+| Metric           |  Value |
+| ---------------- | -----: |
+| Total samples    |  2,580 |
+| Classes          |      5 |
+| Overall accuracy | 97.87% |
+| Device           |   CUDA |
+
+Per-class accuracy:
+
+| Label     | Samples | Accuracy |
+| --------- | ------: | -------: |
+| open_palm |     510 |   98.63% |
+| fist      |     510 |  100.00% |
+| pinch     |     510 |   97.25% |
+| point     |     510 |   95.29% |
+| peace     |     540 |   98.15% |
+
+The weakest class is currently `point`, which is visually more similar to `pinch`, `fist`, or `peace` depending on finger angle and crop position.
+
+Note: the current baseline uses image-level random split. A stricter future evaluation should use burst/session-level split to avoid similar frames appearing across train/test sets.
+
 ## Dataset Preview
 
 ![Gesture RGB-D sample grid](docs/assets/gesture_sample_grid.jpg)

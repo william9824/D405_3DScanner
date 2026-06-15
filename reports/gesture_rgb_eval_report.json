@@ -1,0 +1,2424 @@
+{
+  "dataset_root": "datasets/gestures",
+  "model": "models/gesture_rgb_cnn.pt",
+  "device": "cuda",
+  "total": 2580,
+  "correct": 2525,
+  "overall_accuracy": 0.9786821705426356,
+  "per_class": {
+    "open_palm": {
+      "total": 510,
+      "correct": 503,
+      "accuracy": 0.9862745098039216
+    },
+    "fist": {
+      "total": 510,
+      "correct": 510,
+      "accuracy": 1.0
+    },
+    "pinch": {
+      "total": 510,
+      "correct": 496,
+      "accuracy": 0.9725490196078431
+    },
+    "point": {
+      "total": 510,
+      "correct": 486,
+      "accuracy": 0.9529411764705882
+    },
+    "peace": {
+      "total": 540,
+      "correct": 530,
+      "accuracy": 0.9814814814814815
+    }
+  },
+  "confusion": {
+    "open_palm": {
+      "open_palm": 503,
+      "fist": 5,
+      "pinch": 2,
+      "point": 0,
+      "peace": 0
+    },
+    "fist": {
+      "open_palm": 0,
+      "fist": 510,
+      "pinch": 0,
+      "point": 0,
+      "peace": 0
+    },
+    "pinch": {
+      "open_palm": 3,
+      "fist": 2,
+      "pinch": 496,
+      "point": 9,
+      "peace": 0
+    },
+    "point": {
+      "open_palm": 0,
+      "fist": 20,
+      "pinch": 2,
+      "point": 486,
+      "peace": 2
+    },
+    "peace": {
+      "open_palm": 1,
+      "fist": 6,
+      "pinch": 0,
+      "point": 3,
+      "peace": 530
+    }
+  },
+  "wrong_count": 55,
+  "low_confidence_threshold": 0.6,
+  "low_confidence_count": 95,
+  "wrong_samples": [
+    {
+      "sample_id": "20260613_164915_162",
+      "label": "open_palm",
+      "rgb_path": "datasets\\gestures\\open_palm\\20260613_164915_162_rgb.png",
+      "meta_path": "datasets\\gestures\\open_palm\\20260613_164915_162_meta.json",
+      "prediction": "pinch",
+      "confidence": 0.56756591796875,
+      "probabilities": {
+        "open_palm": 0.3748931586742401,
+        "fist": 0.03852648660540581,
+        "pinch": 0.56756591796875,
+        "point": 0.0025448838714510202,
+        "peace": 0.016469599679112434
+      }
+    },
+    {
+      "sample_id": "20260613_164915_271",
+      "label": "open_palm",
+      "rgb_path": "datasets\\gestures\\open_palm\\20260613_164915_271_rgb.png",
+      "meta_path": "datasets\\gestures\\open_palm\\20260613_164915_271_meta.json",
+      "prediction": "pinch",
+      "confidence": 0.3854636549949646,
+      "probabilities": {
+        "open_palm": 0.33855634927749634,
+        "fist": 0.09174840152263641,
+        "pinch": 0.3854636549949646,
+        "point": 0.06067974865436554,
+        "peace": 0.12355181574821472
+      }
+    },
+    {
+      "sample_id": "20260613_164915_815",
+      "label": "open_palm",
+      "rgb_path": "datasets\\gestures\\open_palm\\20260613_164915_815_rgb.png",
+      "meta_path": "datasets\\gestures\\open_palm\\20260613_164915_815_meta.json",
+      "prediction": "fist",
+      "confidence": 0.7322307229042053,
+      "probabilities": {
+        "open_palm": 0.22795861959457397,
+        "fist": 0.7322307229042053,
+        "pinch": 0.016295300796628,
+        "point": 0.002572279190644622,
+        "peace": 0.02094309963285923
+      }
+    },
+    {
+      "sample_id": "20260613_164915_924",
+      "label": "open_palm",
+      "rgb_path": "datasets\\gestures\\open_palm\\20260613_164915_924_rgb.png",
+      "meta_path": "datasets\\gestures\\open_palm\\20260613_164915_924_meta.json",
+      "prediction": "fist",
+      "confidence": 0.5453506708145142,
+      "probabilities": {
+        "open_palm": 0.3853762149810791,
+        "fist": 0.5453506708145142,
+        "pinch": 0.030967507511377335,
+        "point": 0.0039095571264624596,
+        "peace": 0.03439607471227646
+      }
+    },
+    {
+      "sample_id": "20260613_164916_033",
+      "label": "open_palm",
+      "rgb_path": "datasets\\gestures\\open_palm\\20260613_164916_033_rgb.png",
+      "meta_path": "datasets\\gestures\\open_palm\\20260613_164916_033_meta.json",
+      "prediction": "fist",
+      "confidence": 0.5928758978843689,
+      "probabilities": {
+        "open_palm": 0.35499146580696106,
+        "fist": 0.5928758978843689,
+        "pinch": 0.029198171570897102,
+        "point": 0.0028873058035969734,
+        "peace": 0.020047083497047424
+      }
+    },
+    {
+      "sample_id": "20260613_164916_143",
+      "label": "open_palm",
+      "rgb_path": "datasets\\gestures\\open_palm\\20260613_164916_143_rgb.png",
+      "meta_path": "datasets\\gestures\\open_palm\\20260613_164916_143_meta.json",
+      "prediction": "fist",
+      "confidence": 0.8415923714637756,
+      "probabilities": {
+        "open_palm": 0.14292536675930023,
+        "fist": 0.8415923714637756,
+        "pinch": 0.008974188938736916,
+        "point": 0.0005122483125887811,
+        "peace": 0.005995792802423239
+      }
+    },
+    {
+      "sample_id": "20260614_020029_754",
+      "label": "open_palm",
+      "rgb_path": "datasets\\gestures\\open_palm\\20260614_020029_754_rgb.png",
+      "meta_path": "datasets\\gestures\\open_palm\\20260614_020029_754_meta.json",
+      "prediction": "fist",
+      "confidence": 0.7667077779769897,
+      "probabilities": {
+        "open_palm": 0.2280367761850357,
+        "fist": 0.7667077779769897,
+        "pinch": 1.1350059780923516e-09,
+        "point": 4.7672057273961954e-11,
+        "peace": 0.0052554248832166195
+      }
+    },
+    {
+      "sample_id": "20260613_164954_269",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_164954_269_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_164954_269_meta.json",
+      "prediction": "open_palm",
+      "confidence": 0.700482964515686,
+      "probabilities": {
+        "open_palm": 0.700482964515686,
+        "fist": 0.00025163785903714597,
+        "pinch": 0.2747722864151001,
+        "point": 0.00032748343073762953,
+        "peace": 0.0241656843572855
+      }
+    },
+    {
+      "sample_id": "20260613_164954_487",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_164954_487_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_164954_487_meta.json",
+      "prediction": "open_palm",
+      "confidence": 0.6947769522666931,
+      "probabilities": {
+        "open_palm": 0.6947769522666931,
+        "fist": 0.00045116120600141585,
+        "pinch": 0.2819463610649109,
+        "point": 0.0006616785540245473,
+        "peace": 0.022163815796375275
+      }
+    },
+    {
+      "sample_id": "20260613_164955_903",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_164955_903_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_164955_903_meta.json",
+      "prediction": "point",
+      "confidence": 0.3406613767147064,
+      "probabilities": {
+        "open_palm": 0.03653957322239876,
+        "fist": 0.2298644483089447,
+        "pinch": 0.12267645448446274,
+        "point": 0.3406613767147064,
+        "peace": 0.2702581286430359
+      }
+    },
+    {
+      "sample_id": "20260613_164956_012",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_164956_012_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_164956_012_meta.json",
+      "prediction": "fist",
+      "confidence": 0.5718026757240295,
+      "probabilities": {
+        "open_palm": 0.045370299369096756,
+        "fist": 0.5718026757240295,
+        "pinch": 0.10619210451841354,
+        "point": 0.20050738751888275,
+        "peace": 0.07612745463848114
+      }
+    },
+    {
+      "sample_id": "20260613_165012_901",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_165012_901_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_165012_901_meta.json",
+      "prediction": "open_palm",
+      "confidence": 0.6556165218353271,
+      "probabilities": {
+        "open_palm": 0.6556165218353271,
+        "fist": 0.0005892874323762953,
+        "pinch": 0.34235894680023193,
+        "point": 3.349506368977018e-05,
+        "peace": 0.0014018231304362416
+      }
+    },
+    {
+      "sample_id": "20260613_165020_986",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_165020_986_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_165020_986_meta.json",
+      "prediction": "fist",
+      "confidence": 0.37974098324775696,
+      "probabilities": {
+        "open_palm": 0.08863192796707153,
+        "fist": 0.37974098324775696,
+        "pinch": 0.3432426154613495,
+        "point": 0.13765589892864227,
+        "peace": 0.050728537142276764
+      }
+    },
+    {
+      "sample_id": "20260613_165022_619",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_165022_619_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_165022_619_meta.json",
+      "prediction": "point",
+      "confidence": 0.4612281918525696,
+      "probabilities": {
+        "open_palm": 0.01125584077090025,
+        "fist": 0.19374632835388184,
+        "pinch": 0.3051394820213318,
+        "point": 0.4612281918525696,
+        "peace": 0.028630178421735764
+      }
+    },
+    {
+      "sample_id": "20260613_165022_719",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_165022_719_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_165022_719_meta.json",
+      "prediction": "point",
+      "confidence": 0.5223506093025208,
+      "probabilities": {
+        "open_palm": 0.002685226034373045,
+        "fist": 0.04186427593231201,
+        "pinch": 0.4208010733127594,
+        "point": 0.5223506093025208,
+        "peace": 0.012298810295760632
+      }
+    },
+    {
+      "sample_id": "20260613_165022_820",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_165022_820_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_165022_820_meta.json",
+      "prediction": "point",
+      "confidence": 0.758856475353241,
+      "probabilities": {
+        "open_palm": 0.0014982009306550026,
+        "fist": 0.00705132307484746,
+        "pinch": 0.21942336857318878,
+        "point": 0.758856475353241,
+        "peace": 0.013170703314244747
+      }
+    },
+    {
+      "sample_id": "20260613_165022_930",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_165022_930_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_165022_930_meta.json",
+      "prediction": "point",
+      "confidence": 0.6499072313308716,
+      "probabilities": {
+        "open_palm": 0.0022748352494090796,
+        "fist": 0.041356638073921204,
+        "pinch": 0.2964326739311218,
+        "point": 0.6499072313308716,
+        "peace": 0.010028628632426262
+      }
+    },
+    {
+      "sample_id": "20260613_165023_039",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_165023_039_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_165023_039_meta.json",
+      "prediction": "point",
+      "confidence": 0.45896127820014954,
+      "probabilities": {
+        "open_palm": 0.006219937466084957,
+        "fist": 0.27358052134513855,
+        "pinch": 0.2448192834854126,
+        "point": 0.45896127820014954,
+        "peace": 0.016419006511569023
+      }
+    },
+    {
+      "sample_id": "20260613_165023_148",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_165023_148_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_165023_148_meta.json",
+      "prediction": "point",
+      "confidence": 0.5878459215164185,
+      "probabilities": {
+        "open_palm": 0.0031789573840796947,
+        "fist": 0.024718111380934715,
+        "pinch": 0.34625521302223206,
+        "point": 0.5878459215164185,
+        "peace": 0.038001853972673416
+      }
+    },
+    {
+      "sample_id": "20260613_165023_366",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_165023_366_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_165023_366_meta.json",
+      "prediction": "point",
+      "confidence": 0.4876236915588379,
+      "probabilities": {
+        "open_palm": 0.005361045245081186,
+        "fist": 0.029787711799144745,
+        "pinch": 0.4483697712421417,
+        "point": 0.4876236915588379,
+        "peace": 0.028857799246907234
+      }
+    },
+    {
+      "sample_id": "20260613_165023_474",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_165023_474_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_165023_474_meta.json",
+      "prediction": "point",
+      "confidence": 0.4968227744102478,
+      "probabilities": {
+        "open_palm": 0.002217690460383892,
+        "fist": 0.015841195359826088,
+        "pinch": 0.4692111313343048,
+        "point": 0.4968227744102478,
+        "peace": 0.01590726710855961
+      }
+    },
+    {
+      "sample_id": "20260613_165028_269",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165028_269_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165028_269_meta.json",
+      "prediction": "fist",
+      "confidence": 0.4081604480743408,
+      "probabilities": {
+        "open_palm": 0.039906278252601624,
+        "fist": 0.4081604480743408,
+        "pinch": 0.11584378033876419,
+        "point": 0.29154515266418457,
+        "peace": 0.14454427361488342
+      }
+    },
+    {
+      "sample_id": "20260613_165028_373",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165028_373_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165028_373_meta.json",
+      "prediction": "fist",
+      "confidence": 0.40192925930023193,
+      "probabilities": {
+        "open_palm": 0.05030902847647667,
+        "fist": 0.40192925930023193,
+        "pinch": 0.13703538477420807,
+        "point": 0.2819531261920929,
+        "peace": 0.12877315282821655
+      }
+    },
+    {
+      "sample_id": "20260613_165028_923",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165028_923_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165028_923_meta.json",
+      "prediction": "fist",
+      "confidence": 0.4101485013961792,
+      "probabilities": {
+        "open_palm": 0.06295989453792572,
+        "fist": 0.4101485013961792,
+        "pinch": 0.1764376014471054,
+        "point": 0.26358309388160706,
+        "peace": 0.0868709608912468
+      }
+    },
+    {
+      "sample_id": "20260613_165029_031",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165029_031_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165029_031_meta.json",
+      "prediction": "fist",
+      "confidence": 0.29387471079826355,
+      "probabilities": {
+        "open_palm": 0.12498966604471207,
+        "fist": 0.29387471079826355,
+        "pinch": 0.19573648273944855,
+        "point": 0.2334655374288559,
+        "peace": 0.15193355083465576
+      }
+    },
+    {
+      "sample_id": "20260613_165029_140",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165029_140_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165029_140_meta.json",
+      "prediction": "fist",
+      "confidence": 0.2574600279331207,
+      "probabilities": {
+        "open_palm": 0.15088647603988647,
+        "fist": 0.2574600279331207,
+        "pinch": 0.19676367938518524,
+        "point": 0.21864421665668488,
+        "peace": 0.17624564468860626
+      }
+    },
+    {
+      "sample_id": "20260613_165029_249",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165029_249_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165029_249_meta.json",
+      "prediction": "fist",
+      "confidence": 0.42662665247917175,
+      "probabilities": {
+        "open_palm": 0.041447874158620834,
+        "fist": 0.42662665247917175,
+        "pinch": 0.12869712710380554,
+        "point": 0.2874259650707245,
+        "peace": 0.11580245941877365
+      }
+    },
+    {
+      "sample_id": "20260613_165029_358",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165029_358_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165029_358_meta.json",
+      "prediction": "fist",
+      "confidence": 0.5073164701461792,
+      "probabilities": {
+        "open_palm": 0.030605662614107132,
+        "fist": 0.5073164701461792,
+        "pinch": 0.14619643986225128,
+        "point": 0.2684522867202759,
+        "peace": 0.04742904752492905
+      }
+    },
+    {
+      "sample_id": "20260613_165029_467",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165029_467_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165029_467_meta.json",
+      "prediction": "fist",
+      "confidence": 0.935899555683136,
+      "probabilities": {
+        "open_palm": 0.014563086442649364,
+        "fist": 0.935899555683136,
+        "pinch": 0.013491008430719376,
+        "point": 0.02322944812476635,
+        "peace": 0.01281689666211605
+      }
+    },
+    {
+      "sample_id": "20260613_165029_576",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165029_576_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165029_576_meta.json",
+      "prediction": "fist",
+      "confidence": 0.8432106971740723,
+      "probabilities": {
+        "open_palm": 0.08353878557682037,
+        "fist": 0.8432106971740723,
+        "pinch": 0.031031940132379532,
+        "point": 0.012086171656847,
+        "peace": 0.03013242594897747
+      }
+    },
+    {
+      "sample_id": "20260613_165029_679",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165029_679_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165029_679_meta.json",
+      "prediction": "fist",
+      "confidence": 0.6319360733032227,
+      "probabilities": {
+        "open_palm": 0.008835257031023502,
+        "fist": 0.6319360733032227,
+        "pinch": 0.05237806960940361,
+        "point": 0.24703948199748993,
+        "peace": 0.05981115996837616
+      }
+    },
+    {
+      "sample_id": "20260613_165029_794",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165029_794_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165029_794_meta.json",
+      "prediction": "fist",
+      "confidence": 0.44961610436439514,
+      "probabilities": {
+        "open_palm": 0.03500405699014664,
+        "fist": 0.44961610436439514,
+        "pinch": 0.122841015458107,
+        "point": 0.2903287708759308,
+        "peace": 0.10221011191606522
+      }
+    },
+    {
+      "sample_id": "20260613_165029_902",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165029_902_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165029_902_meta.json",
+      "prediction": "fist",
+      "confidence": 0.35738635063171387,
+      "probabilities": {
+        "open_palm": 0.08757086843252182,
+        "fist": 0.35738635063171387,
+        "pinch": 0.18789371848106384,
+        "point": 0.2531457841396332,
+        "peace": 0.1140032410621643
+      }
+    },
+    {
+      "sample_id": "20260613_165030_011",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165030_011_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165030_011_meta.json",
+      "prediction": "fist",
+      "confidence": 0.517909824848175,
+      "probabilities": {
+        "open_palm": 0.1311691403388977,
+        "fist": 0.517909824848175,
+        "pinch": 0.10641179978847504,
+        "point": 0.15106046199798584,
+        "peace": 0.09344873577356339
+      }
+    },
+    {
+      "sample_id": "20260613_165030_120",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165030_120_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165030_120_meta.json",
+      "prediction": "fist",
+      "confidence": 0.5218583941459656,
+      "probabilities": {
+        "open_palm": 0.08601822704076767,
+        "fist": 0.5218583941459656,
+        "pinch": 0.11978849023580551,
+        "point": 0.15581029653549194,
+        "peace": 0.11652453988790512
+      }
+    },
+    {
+      "sample_id": "20260613_165030_229",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165030_229_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165030_229_meta.json",
+      "prediction": "fist",
+      "confidence": 0.7488133311271667,
+      "probabilities": {
+        "open_palm": 0.1002444326877594,
+        "fist": 0.7488133311271667,
+        "pinch": 0.03071293607354164,
+        "point": 0.03424038365483284,
+        "peace": 0.08598895370960236
+      }
+    },
+    {
+      "sample_id": "20260613_165030_338",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165030_338_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165030_338_meta.json",
+      "prediction": "fist",
+      "confidence": 0.6512413024902344,
+      "probabilities": {
+        "open_palm": 0.025117188692092896,
+        "fist": 0.6512413024902344,
+        "pinch": 0.10932274907827377,
+        "point": 0.17815908789634705,
+        "peace": 0.036159686744213104
+      }
+    },
+    {
+      "sample_id": "20260613_165030_556",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165030_556_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165030_556_meta.json",
+      "prediction": "fist",
+      "confidence": 0.46096479892730713,
+      "probabilities": {
+        "open_palm": 0.010352196171879768,
+        "fist": 0.46096479892730713,
+        "pinch": 0.07341039925813675,
+        "point": 0.35220494866371155,
+        "peace": 0.10306769609451294
+      }
+    },
+    {
+      "sample_id": "20260613_165030_664",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165030_664_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165030_664_meta.json",
+      "prediction": "fist",
+      "confidence": 0.404187947511673,
+      "probabilities": {
+        "open_palm": 0.04181201010942459,
+        "fist": 0.404187947511673,
+        "pinch": 0.18590570986270905,
+        "point": 0.30025801062583923,
+        "peace": 0.06783634424209595
+      }
+    },
+    {
+      "sample_id": "20260613_165030_774",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165030_774_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165030_774_meta.json",
+      "prediction": "fist",
+      "confidence": 0.5065653324127197,
+      "probabilities": {
+        "open_palm": 0.03079838678240776,
+        "fist": 0.5065653324127197,
+        "pinch": 0.14646665751934052,
+        "point": 0.2684879004955292,
+        "peace": 0.04768168553709984
+      }
+    },
+    {
+      "sample_id": "20260613_165030_882",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165030_882_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165030_882_meta.json",
+      "prediction": "fist",
+      "confidence": 0.41605526208877563,
+      "probabilities": {
+        "open_palm": 0.04713528975844383,
+        "fist": 0.41605526208877563,
+        "pinch": 0.13752031326293945,
+        "point": 0.2828690707683563,
+        "peace": 0.11642006784677505
+      }
+    },
+    {
+      "sample_id": "20260613_165032_919",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165032_919_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165032_919_meta.json",
+      "prediction": "peace",
+      "confidence": 0.36784693598747253,
+      "probabilities": {
+        "open_palm": 0.025838356465101242,
+        "fist": 0.20657885074615479,
+        "pinch": 0.08036289364099503,
+        "point": 0.3193729817867279,
+        "peace": 0.36784693598747253
+      }
+    },
+    {
+      "sample_id": "20260613_165033_122",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165033_122_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165033_122_meta.json",
+      "prediction": "peace",
+      "confidence": 0.30885472893714905,
+      "probabilities": {
+        "open_palm": 0.04308619350194931,
+        "fist": 0.2886100113391876,
+        "pinch": 0.08582764863967896,
+        "point": 0.27362141013145447,
+        "peace": 0.30885472893714905
+      }
+    },
+    {
+      "sample_id": "20260614_015241_473",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260614_015241_473_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260614_015241_473_meta.json",
+      "prediction": "pinch",
+      "confidence": 0.6302626729011536,
+      "probabilities": {
+        "open_palm": 5.129053306518472e-07,
+        "fist": 2.4340465643035714e-07,
+        "pinch": 0.6302626729011536,
+        "point": 0.33043020963668823,
+        "peace": 0.03930637985467911
+      }
+    },
+    {
+      "sample_id": "20260614_015241_582",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260614_015241_582_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260614_015241_582_meta.json",
+      "prediction": "pinch",
+      "confidence": 0.8672171235084534,
+      "probabilities": {
+        "open_palm": 1.4121189906290965e-06,
+        "fist": 3.1141576073423494e-07,
+        "pinch": 0.8672171235084534,
+        "point": 0.11402444541454315,
+        "peace": 0.018756670877337456
+      }
+    },
+    {
+      "sample_id": "20260613_165226_555",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165226_555_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165226_555_meta.json",
+      "prediction": "fist",
+      "confidence": 0.5745788216590881,
+      "probabilities": {
+        "open_palm": 0.004249436780810356,
+        "fist": 0.5745788216590881,
+        "pinch": 0.004409600980579853,
+        "point": 0.05154874175786972,
+        "peace": 0.36521342396736145
+      }
+    },
+    {
+      "sample_id": "20260613_165226_664",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165226_664_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165226_664_meta.json",
+      "prediction": "fist",
+      "confidence": 0.5610655546188354,
+      "probabilities": {
+        "open_palm": 0.0038830714765936136,
+        "fist": 0.5610655546188354,
+        "pinch": 0.006068561226129532,
+        "point": 0.08081270754337311,
+        "peace": 0.34817007184028625
+      }
+    },
+    {
+      "sample_id": "20260613_165229_277",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165229_277_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165229_277_meta.json",
+      "prediction": "open_palm",
+      "confidence": 0.24457162618637085,
+      "probabilities": {
+        "open_palm": 0.24457162618637085,
+        "fist": 0.21840451657772064,
+        "pinch": 0.17620505392551422,
+        "point": 0.12936370074748993,
+        "peace": 0.23145508766174316
+      }
+    },
+    {
+      "sample_id": "20260613_165236_586",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165236_586_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165236_586_meta.json",
+      "prediction": "point",
+      "confidence": 0.4414135813713074,
+      "probabilities": {
+        "open_palm": 0.003807865548878908,
+        "fist": 0.10256315767765045,
+        "pinch": 0.04797738045454025,
+        "point": 0.4414135813713074,
+        "peace": 0.40423792600631714
+      }
+    },
+    {
+      "sample_id": "20260613_165237_458",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165237_458_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165237_458_meta.json",
+      "prediction": "point",
+      "confidence": 0.49502870440483093,
+      "probabilities": {
+        "open_palm": 0.0001512229791842401,
+        "fist": 0.009501989930868149,
+        "pinch": 0.02524644322693348,
+        "point": 0.49502870440483093,
+        "peace": 0.4700716435909271
+      }
+    },
+    {
+      "sample_id": "20260613_165238_872",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165238_872_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165238_872_meta.json",
+      "prediction": "point",
+      "confidence": 0.5631589889526367,
+      "probabilities": {
+        "open_palm": 5.889541353099048e-05,
+        "fist": 0.00046142490464262664,
+        "pinch": 0.05530024692416191,
+        "point": 0.5631589889526367,
+        "peace": 0.3810203969478607
+      }
+    },
+    {
+      "sample_id": "20260614_015710_437",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260614_015710_437_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260614_015710_437_meta.json",
+      "prediction": "fist",
+      "confidence": 0.5600728988647461,
+      "probabilities": {
+        "open_palm": 0.00019941103528253734,
+        "fist": 0.5600728988647461,
+        "pinch": 1.38180071829197e-08,
+        "point": 1.2096066370759218e-07,
+        "peace": 0.43972763419151306
+      }
+    },
+    {
+      "sample_id": "20260614_015721_241",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260614_015721_241_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260614_015721_241_meta.json",
+      "prediction": "fist",
+      "confidence": 0.5375824570655823,
+      "probabilities": {
+        "open_palm": 0.0007496892940253019,
+        "fist": 0.5375824570655823,
+        "pinch": 4.673990972037245e-09,
+        "point": 1.1513845876720552e-08,
+        "peace": 0.46166786551475525
+      }
+    },
+    {
+      "sample_id": "20260614_015721_893",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260614_015721_893_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260614_015721_893_meta.json",
+      "prediction": "fist",
+      "confidence": 0.6175823211669922,
+      "probabilities": {
+        "open_palm": 7.272096263477579e-05,
+        "fist": 0.6175823211669922,
+        "pinch": 6.0369598209319975e-09,
+        "point": 9.503610698402554e-08,
+        "peace": 0.3823448419570923
+      }
+    },
+    {
+      "sample_id": "20260614_015722_003",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260614_015722_003_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260614_015722_003_meta.json",
+      "prediction": "fist",
+      "confidence": 0.5014301538467407,
+      "probabilities": {
+        "open_palm": 0.0014287985395640135,
+        "fist": 0.5014301538467407,
+        "pinch": 8.068099965896636e-09,
+        "point": 1.3123373499013269e-08,
+        "peace": 0.4971409738063812
+      }
+    }
+  ],
+  "low_confidence_samples": [
+    {
+      "sample_id": "20260613_164915_162",
+      "label": "open_palm",
+      "rgb_path": "datasets\\gestures\\open_palm\\20260613_164915_162_rgb.png",
+      "meta_path": "datasets\\gestures\\open_palm\\20260613_164915_162_meta.json",
+      "prediction": "pinch",
+      "confidence": 0.56756591796875,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.3748931586742401,
+        "fist": 0.03852648660540581,
+        "pinch": 0.56756591796875,
+        "point": 0.0025448838714510202,
+        "peace": 0.016469599679112434
+      }
+    },
+    {
+      "sample_id": "20260613_164915_271",
+      "label": "open_palm",
+      "rgb_path": "datasets\\gestures\\open_palm\\20260613_164915_271_rgb.png",
+      "meta_path": "datasets\\gestures\\open_palm\\20260613_164915_271_meta.json",
+      "prediction": "pinch",
+      "confidence": 0.3854636549949646,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.33855634927749634,
+        "fist": 0.09174840152263641,
+        "pinch": 0.3854636549949646,
+        "point": 0.06067974865436554,
+        "peace": 0.12355181574821472
+      }
+    },
+    {
+      "sample_id": "20260613_164915_924",
+      "label": "open_palm",
+      "rgb_path": "datasets\\gestures\\open_palm\\20260613_164915_924_rgb.png",
+      "meta_path": "datasets\\gestures\\open_palm\\20260613_164915_924_meta.json",
+      "prediction": "fist",
+      "confidence": 0.5453506708145142,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.3853762149810791,
+        "fist": 0.5453506708145142,
+        "pinch": 0.030967507511377335,
+        "point": 0.0039095571264624596,
+        "peace": 0.03439607471227646
+      }
+    },
+    {
+      "sample_id": "20260613_164916_033",
+      "label": "open_palm",
+      "rgb_path": "datasets\\gestures\\open_palm\\20260613_164916_033_rgb.png",
+      "meta_path": "datasets\\gestures\\open_palm\\20260613_164916_033_meta.json",
+      "prediction": "fist",
+      "confidence": 0.5928758978843689,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.35499146580696106,
+        "fist": 0.5928758978843689,
+        "pinch": 0.029198171570897102,
+        "point": 0.0028873058035969734,
+        "peace": 0.020047083497047424
+      }
+    },
+    {
+      "sample_id": "20260614_020017_754",
+      "label": "open_palm",
+      "rgb_path": "datasets\\gestures\\open_palm\\20260614_020017_754_rgb.png",
+      "meta_path": "datasets\\gestures\\open_palm\\20260614_020017_754_meta.json",
+      "prediction": "open_palm",
+      "confidence": 0.499454140663147,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.499454140663147,
+        "fist": 0.4629184603691101,
+        "pinch": 1.943432526019251e-09,
+        "point": 3.823312499928733e-11,
+        "peace": 0.03762737289071083
+      }
+    },
+    {
+      "sample_id": "20260614_020019_967",
+      "label": "open_palm",
+      "rgb_path": "datasets\\gestures\\open_palm\\20260614_020019_967_rgb.png",
+      "meta_path": "datasets\\gestures\\open_palm\\20260614_020019_967_meta.json",
+      "prediction": "open_palm",
+      "confidence": 0.5905268788337708,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.5905268788337708,
+        "fist": 0.3974270820617676,
+        "pinch": 2.1282380024967296e-10,
+        "point": 4.530604190422505e-12,
+        "peace": 0.012046012096107006
+      }
+    },
+    {
+      "sample_id": "20260614_020039_841",
+      "label": "open_palm",
+      "rgb_path": "datasets\\gestures\\open_palm\\20260614_020039_841_rgb.png",
+      "meta_path": "datasets\\gestures\\open_palm\\20260614_020039_841_meta.json",
+      "prediction": "open_palm",
+      "confidence": 0.5387426614761353,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.5387426614761353,
+        "fist": 0.45869722962379456,
+        "pinch": 4.1242780024486336e-11,
+        "point": 1.3073532057275572e-12,
+        "peace": 0.0025601328816264868
+      }
+    },
+    {
+      "sample_id": "20260613_164931_381",
+      "label": "fist",
+      "rgb_path": "datasets\\gestures\\fist\\20260613_164931_381_rgb.png",
+      "meta_path": "datasets\\gestures\\fist\\20260613_164931_381_meta.json",
+      "prediction": "fist",
+      "confidence": 0.5591347813606262,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.06337369233369827,
+        "fist": 0.5591347813606262,
+        "pinch": 0.0219496451318264,
+        "point": 0.05368625372648239,
+        "peace": 0.3018556535243988
+      }
+    },
+    {
+      "sample_id": "20260613_164931_482",
+      "label": "fist",
+      "rgb_path": "datasets\\gestures\\fist\\20260613_164931_482_rgb.png",
+      "meta_path": "datasets\\gestures\\fist\\20260613_164931_482_meta.json",
+      "prediction": "fist",
+      "confidence": 0.5441192984580994,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.09187532216310501,
+        "fist": 0.5441192984580994,
+        "pinch": 0.03416727855801582,
+        "point": 0.0706252008676529,
+        "peace": 0.2592129707336426
+      }
+    },
+    {
+      "sample_id": "20260613_164954_373",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_164954_373_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_164954_373_meta.json",
+      "prediction": "pinch",
+      "confidence": 0.5123147368431091,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.4373314082622528,
+        "fist": 0.0004742225573863834,
+        "pinch": 0.5123147368431091,
+        "point": 0.0012104366905987263,
+        "peace": 0.0486692450940609
+      }
+    },
+    {
+      "sample_id": "20260613_164955_903",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_164955_903_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_164955_903_meta.json",
+      "prediction": "point",
+      "confidence": 0.3406613767147064,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.03653957322239876,
+        "fist": 0.2298644483089447,
+        "pinch": 0.12267645448446274,
+        "point": 0.3406613767147064,
+        "peace": 0.2702581286430359
+      }
+    },
+    {
+      "sample_id": "20260613_164956_012",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_164956_012_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_164956_012_meta.json",
+      "prediction": "fist",
+      "confidence": 0.5718026757240295,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.045370299369096756,
+        "fist": 0.5718026757240295,
+        "pinch": 0.10619210451841354,
+        "point": 0.20050738751888275,
+        "peace": 0.07612745463848114
+      }
+    },
+    {
+      "sample_id": "20260613_164956_120",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_164956_120_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_164956_120_meta.json",
+      "prediction": "pinch",
+      "confidence": 0.4796423017978668,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.22564640641212463,
+        "fist": 0.14495930075645447,
+        "pinch": 0.4796423017978668,
+        "point": 0.0727858617901802,
+        "peace": 0.07696612924337387
+      }
+    },
+    {
+      "sample_id": "20260613_164956_229",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_164956_229_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_164956_229_meta.json",
+      "prediction": "pinch",
+      "confidence": 0.4276491403579712,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.20334380865097046,
+        "fist": 0.22432167828083038,
+        "pinch": 0.4276491403579712,
+        "point": 0.07681854814291,
+        "peace": 0.06786686182022095
+      }
+    },
+    {
+      "sample_id": "20260613_165020_986",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_165020_986_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_165020_986_meta.json",
+      "prediction": "fist",
+      "confidence": 0.37974098324775696,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.08863192796707153,
+        "fist": 0.37974098324775696,
+        "pinch": 0.3432426154613495,
+        "point": 0.13765589892864227,
+        "peace": 0.050728537142276764
+      }
+    },
+    {
+      "sample_id": "20260613_165021_095",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_165021_095_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_165021_095_meta.json",
+      "prediction": "pinch",
+      "confidence": 0.4507794976234436,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.18400752544403076,
+        "fist": 0.20567169785499573,
+        "pinch": 0.4507794976234436,
+        "point": 0.08948706090450287,
+        "peace": 0.07005418092012405
+      }
+    },
+    {
+      "sample_id": "20260613_165021_203",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_165021_203_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_165021_203_meta.json",
+      "prediction": "pinch",
+      "confidence": 0.5066248774528503,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.22800257802009583,
+        "fist": 0.12865768373012543,
+        "pinch": 0.5066248774528503,
+        "point": 0.06584154814481735,
+        "peace": 0.07087330520153046
+      }
+    },
+    {
+      "sample_id": "20260613_165022_619",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_165022_619_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_165022_619_meta.json",
+      "prediction": "point",
+      "confidence": 0.4612281918525696,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.01125584077090025,
+        "fist": 0.19374632835388184,
+        "pinch": 0.3051394820213318,
+        "point": 0.4612281918525696,
+        "peace": 0.028630178421735764
+      }
+    },
+    {
+      "sample_id": "20260613_165022_719",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_165022_719_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_165022_719_meta.json",
+      "prediction": "point",
+      "confidence": 0.5223506093025208,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.002685226034373045,
+        "fist": 0.04186427593231201,
+        "pinch": 0.4208010733127594,
+        "point": 0.5223506093025208,
+        "peace": 0.012298810295760632
+      }
+    },
+    {
+      "sample_id": "20260613_165023_039",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_165023_039_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_165023_039_meta.json",
+      "prediction": "point",
+      "confidence": 0.45896127820014954,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.006219937466084957,
+        "fist": 0.27358052134513855,
+        "pinch": 0.2448192834854126,
+        "point": 0.45896127820014954,
+        "peace": 0.016419006511569023
+      }
+    },
+    {
+      "sample_id": "20260613_165023_148",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_165023_148_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_165023_148_meta.json",
+      "prediction": "point",
+      "confidence": 0.5878459215164185,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.0031789573840796947,
+        "fist": 0.024718111380934715,
+        "pinch": 0.34625521302223206,
+        "point": 0.5878459215164185,
+        "peace": 0.038001853972673416
+      }
+    },
+    {
+      "sample_id": "20260613_165023_257",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_165023_257_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_165023_257_meta.json",
+      "prediction": "pinch",
+      "confidence": 0.47810098528862,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.004064328968524933,
+        "fist": 0.01807633601129055,
+        "pinch": 0.47810098528862,
+        "point": 0.47451239824295044,
+        "peace": 0.025245975703001022
+      }
+    },
+    {
+      "sample_id": "20260613_165023_366",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_165023_366_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_165023_366_meta.json",
+      "prediction": "point",
+      "confidence": 0.4876236915588379,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.005361045245081186,
+        "fist": 0.029787711799144745,
+        "pinch": 0.4483697712421417,
+        "point": 0.4876236915588379,
+        "peace": 0.028857799246907234
+      }
+    },
+    {
+      "sample_id": "20260613_165023_474",
+      "label": "pinch",
+      "rgb_path": "datasets\\gestures\\pinch\\20260613_165023_474_rgb.png",
+      "meta_path": "datasets\\gestures\\pinch\\20260613_165023_474_meta.json",
+      "prediction": "point",
+      "confidence": 0.4968227744102478,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.002217690460383892,
+        "fist": 0.015841195359826088,
+        "pinch": 0.4692111313343048,
+        "point": 0.4968227744102478,
+        "peace": 0.01590726710855961
+      }
+    },
+    {
+      "sample_id": "20260613_165028_052",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165028_052_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165028_052_meta.json",
+      "prediction": "point",
+      "confidence": 0.35702019929885864,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.04250267520546913,
+        "fist": 0.2564080059528351,
+        "pinch": 0.27099624276161194,
+        "point": 0.35702019929885864,
+        "peace": 0.07307293266057968
+      }
+    },
+    {
+      "sample_id": "20260613_165028_156",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165028_156_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165028_156_meta.json",
+      "prediction": "point",
+      "confidence": 0.34623458981513977,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.038728464394807816,
+        "fist": 0.30739298462867737,
+        "pinch": 0.24191038310527802,
+        "point": 0.34623458981513977,
+        "peace": 0.06573356688022614
+      }
+    },
+    {
+      "sample_id": "20260613_165028_269",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165028_269_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165028_269_meta.json",
+      "prediction": "fist",
+      "confidence": 0.4081604480743408,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.039906278252601624,
+        "fist": 0.4081604480743408,
+        "pinch": 0.11584378033876419,
+        "point": 0.29154515266418457,
+        "peace": 0.14454427361488342
+      }
+    },
+    {
+      "sample_id": "20260613_165028_373",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165028_373_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165028_373_meta.json",
+      "prediction": "fist",
+      "confidence": 0.40192925930023193,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.05030902847647667,
+        "fist": 0.40192925930023193,
+        "pinch": 0.13703538477420807,
+        "point": 0.2819531261920929,
+        "peace": 0.12877315282821655
+      }
+    },
+    {
+      "sample_id": "20260613_165028_487",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165028_487_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165028_487_meta.json",
+      "prediction": "point",
+      "confidence": 0.3539309799671173,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.03221474215388298,
+        "fist": 0.3448525667190552,
+        "pinch": 0.2019890397787094,
+        "point": 0.3539309799671173,
+        "peace": 0.0670127123594284
+      }
+    },
+    {
+      "sample_id": "20260613_165028_813",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165028_813_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165028_813_meta.json",
+      "prediction": "point",
+      "confidence": 0.37632614374160767,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.023525860160589218,
+        "fist": 0.34745410084724426,
+        "pinch": 0.20918363332748413,
+        "point": 0.37632614374160767,
+        "peace": 0.0435103103518486
+      }
+    },
+    {
+      "sample_id": "20260613_165028_923",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165028_923_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165028_923_meta.json",
+      "prediction": "fist",
+      "confidence": 0.4101485013961792,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.06295989453792572,
+        "fist": 0.4101485013961792,
+        "pinch": 0.1764376014471054,
+        "point": 0.26358309388160706,
+        "peace": 0.0868709608912468
+      }
+    },
+    {
+      "sample_id": "20260613_165029_031",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165029_031_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165029_031_meta.json",
+      "prediction": "fist",
+      "confidence": 0.29387471079826355,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.12498966604471207,
+        "fist": 0.29387471079826355,
+        "pinch": 0.19573648273944855,
+        "point": 0.2334655374288559,
+        "peace": 0.15193355083465576
+      }
+    },
+    {
+      "sample_id": "20260613_165029_140",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165029_140_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165029_140_meta.json",
+      "prediction": "fist",
+      "confidence": 0.2574600279331207,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.15088647603988647,
+        "fist": 0.2574600279331207,
+        "pinch": 0.19676367938518524,
+        "point": 0.21864421665668488,
+        "peace": 0.17624564468860626
+      }
+    },
+    {
+      "sample_id": "20260613_165029_249",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165029_249_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165029_249_meta.json",
+      "prediction": "fist",
+      "confidence": 0.42662665247917175,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.041447874158620834,
+        "fist": 0.42662665247917175,
+        "pinch": 0.12869712710380554,
+        "point": 0.2874259650707245,
+        "peace": 0.11580245941877365
+      }
+    },
+    {
+      "sample_id": "20260613_165029_358",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165029_358_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165029_358_meta.json",
+      "prediction": "fist",
+      "confidence": 0.5073164701461792,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.030605662614107132,
+        "fist": 0.5073164701461792,
+        "pinch": 0.14619643986225128,
+        "point": 0.2684522867202759,
+        "peace": 0.04742904752492905
+      }
+    },
+    {
+      "sample_id": "20260613_165029_794",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165029_794_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165029_794_meta.json",
+      "prediction": "fist",
+      "confidence": 0.44961610436439514,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.03500405699014664,
+        "fist": 0.44961610436439514,
+        "pinch": 0.122841015458107,
+        "point": 0.2903287708759308,
+        "peace": 0.10221011191606522
+      }
+    },
+    {
+      "sample_id": "20260613_165029_902",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165029_902_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165029_902_meta.json",
+      "prediction": "fist",
+      "confidence": 0.35738635063171387,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.08757086843252182,
+        "fist": 0.35738635063171387,
+        "pinch": 0.18789371848106384,
+        "point": 0.2531457841396332,
+        "peace": 0.1140032410621643
+      }
+    },
+    {
+      "sample_id": "20260613_165030_011",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165030_011_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165030_011_meta.json",
+      "prediction": "fist",
+      "confidence": 0.517909824848175,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.1311691403388977,
+        "fist": 0.517909824848175,
+        "pinch": 0.10641179978847504,
+        "point": 0.15106046199798584,
+        "peace": 0.09344873577356339
+      }
+    },
+    {
+      "sample_id": "20260613_165030_120",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165030_120_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165030_120_meta.json",
+      "prediction": "fist",
+      "confidence": 0.5218583941459656,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.08601822704076767,
+        "fist": 0.5218583941459656,
+        "pinch": 0.11978849023580551,
+        "point": 0.15581029653549194,
+        "peace": 0.11652453988790512
+      }
+    },
+    {
+      "sample_id": "20260613_165030_447",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165030_447_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165030_447_meta.json",
+      "prediction": "point",
+      "confidence": 0.43745484948158264,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.010876188054680824,
+        "fist": 0.33870482444763184,
+        "pinch": 0.12078822404146194,
+        "point": 0.43745484948158264,
+        "peace": 0.09217584878206253
+      }
+    },
+    {
+      "sample_id": "20260613_165030_556",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165030_556_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165030_556_meta.json",
+      "prediction": "fist",
+      "confidence": 0.46096479892730713,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.010352196171879768,
+        "fist": 0.46096479892730713,
+        "pinch": 0.07341039925813675,
+        "point": 0.35220494866371155,
+        "peace": 0.10306769609451294
+      }
+    },
+    {
+      "sample_id": "20260613_165030_664",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165030_664_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165030_664_meta.json",
+      "prediction": "fist",
+      "confidence": 0.404187947511673,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.04181201010942459,
+        "fist": 0.404187947511673,
+        "pinch": 0.18590570986270905,
+        "point": 0.30025801062583923,
+        "peace": 0.06783634424209595
+      }
+    },
+    {
+      "sample_id": "20260613_165030_774",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165030_774_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165030_774_meta.json",
+      "prediction": "fist",
+      "confidence": 0.5065653324127197,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.03079838678240776,
+        "fist": 0.5065653324127197,
+        "pinch": 0.14646665751934052,
+        "point": 0.2684879004955292,
+        "peace": 0.04768168553709984
+      }
+    },
+    {
+      "sample_id": "20260613_165030_882",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165030_882_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165030_882_meta.json",
+      "prediction": "fist",
+      "confidence": 0.41605526208877563,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.04713528975844383,
+        "fist": 0.41605526208877563,
+        "pinch": 0.13752031326293945,
+        "point": 0.2828690707683563,
+        "peace": 0.11642006784677505
+      }
+    },
+    {
+      "sample_id": "20260613_165032_919",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165032_919_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165032_919_meta.json",
+      "prediction": "peace",
+      "confidence": 0.36784693598747253,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.025838356465101242,
+        "fist": 0.20657885074615479,
+        "pinch": 0.08036289364099503,
+        "point": 0.3193729817867279,
+        "peace": 0.36784693598747253
+      }
+    },
+    {
+      "sample_id": "20260613_165033_021",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165033_021_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165033_021_meta.json",
+      "prediction": "point",
+      "confidence": 0.36767637729644775,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.030682770535349846,
+        "fist": 0.25509196519851685,
+        "pinch": 0.13019302487373352,
+        "point": 0.36767637729644775,
+        "peace": 0.21635590493679047
+      }
+    },
+    {
+      "sample_id": "20260613_165033_122",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165033_122_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165033_122_meta.json",
+      "prediction": "peace",
+      "confidence": 0.30885472893714905,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.04308619350194931,
+        "fist": 0.2886100113391876,
+        "pinch": 0.08582764863967896,
+        "point": 0.27362141013145447,
+        "peace": 0.30885472893714905
+      }
+    },
+    {
+      "sample_id": "20260613_165033_231",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165033_231_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165033_231_meta.json",
+      "prediction": "point",
+      "confidence": 0.35855206847190857,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.05332294851541519,
+        "fist": 0.20145022869110107,
+        "pinch": 0.24334478378295898,
+        "point": 0.35855206847190857,
+        "peace": 0.14332996308803558
+      }
+    },
+    {
+      "sample_id": "20260613_165033_332",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165033_332_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165033_332_meta.json",
+      "prediction": "point",
+      "confidence": 0.3500634729862213,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.058261532336473465,
+        "fist": 0.1711156815290451,
+        "pinch": 0.32220637798309326,
+        "point": 0.3500634729862213,
+        "peace": 0.09835296124219894
+      }
+    },
+    {
+      "sample_id": "20260613_165033_432",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165033_432_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165033_432_meta.json",
+      "prediction": "point",
+      "confidence": 0.35065409541130066,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.049661364406347275,
+        "fist": 0.23461665213108063,
+        "pinch": 0.28174108266830444,
+        "point": 0.35065409541130066,
+        "peace": 0.08332681655883789
+      }
+    },
+    {
+      "sample_id": "20260613_165033_542",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165033_542_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165033_542_meta.json",
+      "prediction": "point",
+      "confidence": 0.32956188917160034,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.0542600043118,
+        "fist": 0.27772822976112366,
+        "pinch": 0.25227227807044983,
+        "point": 0.32956188917160034,
+        "peace": 0.08617759495973587
+      }
+    },
+    {
+      "sample_id": "20260613_165033_650",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165033_650_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165033_650_meta.json",
+      "prediction": "point",
+      "confidence": 0.42158088088035583,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.016650265082716942,
+        "fist": 0.24908091127872467,
+        "pinch": 0.27668216824531555,
+        "point": 0.42158088088035583,
+        "peace": 0.036005809903144836
+      }
+    },
+    {
+      "sample_id": "20260613_165033_752",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165033_752_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165033_752_meta.json",
+      "prediction": "point",
+      "confidence": 0.5023034811019897,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.006663059815764427,
+        "fist": 0.09083669632673264,
+        "pinch": 0.37730294466018677,
+        "point": 0.5023034811019897,
+        "peace": 0.02289385348558426
+      }
+    },
+    {
+      "sample_id": "20260613_165034_833",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165034_833_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165034_833_meta.json",
+      "prediction": "point",
+      "confidence": 0.4578346312046051,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.011339391581714153,
+        "fist": 0.053844328969717026,
+        "pinch": 0.4388907849788666,
+        "point": 0.4578346312046051,
+        "peace": 0.03809085115790367
+      }
+    },
+    {
+      "sample_id": "20260613_165036_030",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165036_030_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165036_030_meta.json",
+      "prediction": "point",
+      "confidence": 0.5159122943878174,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.01108735240995884,
+        "fist": 0.2110254168510437,
+        "pinch": 0.20760343968868256,
+        "point": 0.5159122943878174,
+        "peace": 0.054371464997529984
+      }
+    },
+    {
+      "sample_id": "20260613_165053_217",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165053_217_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165053_217_meta.json",
+      "prediction": "point",
+      "confidence": 0.5536408424377441,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 8.600090950494632e-05,
+        "fist": 0.01135401800274849,
+        "pinch": 0.014511789195239544,
+        "point": 0.5536408424377441,
+        "peace": 0.42040732502937317
+      }
+    },
+    {
+      "sample_id": "20260613_165053_319",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165053_319_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165053_319_meta.json",
+      "prediction": "point",
+      "confidence": 0.5800862312316895,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.00018998808809556067,
+        "fist": 0.01854810304939747,
+        "pinch": 0.021466638892889023,
+        "point": 0.5800862312316895,
+        "peace": 0.37970906496047974
+      }
+    },
+    {
+      "sample_id": "20260613_165056_266",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165056_266_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165056_266_meta.json",
+      "prediction": "point",
+      "confidence": 0.5902730822563171,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.0014724801294505596,
+        "fist": 0.03322373330593109,
+        "pinch": 0.041646383702754974,
+        "point": 0.5902730822563171,
+        "peace": 0.33338427543640137
+      }
+    },
+    {
+      "sample_id": "20260613_165057_755",
+      "label": "point",
+      "rgb_path": "datasets\\gestures\\point\\20260613_165057_755_rgb.png",
+      "meta_path": "datasets\\gestures\\point\\20260613_165057_755_meta.json",
+      "prediction": "point",
+      "confidence": 0.5647090077400208,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.0025925987865775824,
+        "fist": 0.03357717767357826,
+        "pinch": 0.08932019770145416,
+        "point": 0.5647090077400208,
+        "peace": 0.30980098247528076
+      }
+    },
+    {
+      "sample_id": "20260613_165224_272",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165224_272_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165224_272_meta.json",
+      "prediction": "peace",
+      "confidence": 0.5763526558876038,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.1230752095580101,
+        "fist": 0.07450159639120102,
+        "pinch": 0.157826766371727,
+        "point": 0.0682438313961029,
+        "peace": 0.5763526558876038
+      }
+    },
+    {
+      "sample_id": "20260613_165224_378",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165224_378_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165224_378_meta.json",
+      "prediction": "peace",
+      "confidence": 0.4219468832015991,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.2076994627714157,
+        "fist": 0.08349389582872391,
+        "pinch": 0.21300317347049713,
+        "point": 0.07385653257369995,
+        "peace": 0.4219468832015991
+      }
+    },
+    {
+      "sample_id": "20260613_165226_555",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165226_555_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165226_555_meta.json",
+      "prediction": "fist",
+      "confidence": 0.5745788216590881,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.004249436780810356,
+        "fist": 0.5745788216590881,
+        "pinch": 0.004409600980579853,
+        "point": 0.05154874175786972,
+        "peace": 0.36521342396736145
+      }
+    },
+    {
+      "sample_id": "20260613_165226_664",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165226_664_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165226_664_meta.json",
+      "prediction": "fist",
+      "confidence": 0.5610655546188354,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.0038830714765936136,
+        "fist": 0.5610655546188354,
+        "pinch": 0.006068561226129532,
+        "point": 0.08081270754337311,
+        "peace": 0.34817007184028625
+      }
+    },
+    {
+      "sample_id": "20260613_165226_990",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165226_990_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165226_990_meta.json",
+      "prediction": "peace",
+      "confidence": 0.5970795154571533,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.05486921966075897,
+        "fist": 0.2535005807876587,
+        "pinch": 0.033892035484313965,
+        "point": 0.06065851077437401,
+        "peace": 0.5970795154571533
+      }
+    },
+    {
+      "sample_id": "20260613_165227_099",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165227_099_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165227_099_meta.json",
+      "prediction": "peace",
+      "confidence": 0.5800704956054688,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.07855634391307831,
+        "fist": 0.2067992389202118,
+        "pinch": 0.05993916839361191,
+        "point": 0.07463470101356506,
+        "peace": 0.5800704956054688
+      }
+    },
+    {
+      "sample_id": "20260613_165229_065",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165229_065_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165229_065_meta.json",
+      "prediction": "peace",
+      "confidence": 0.45284023880958557,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.032982513308525085,
+        "fist": 0.34156206250190735,
+        "pinch": 0.03376840427517891,
+        "point": 0.13884679973125458,
+        "peace": 0.45284023880958557
+      }
+    },
+    {
+      "sample_id": "20260613_165229_167",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165229_167_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165229_167_meta.json",
+      "prediction": "peace",
+      "confidence": 0.4197356402873993,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.041643764823675156,
+        "fist": 0.3221600353717804,
+        "pinch": 0.04779123142361641,
+        "point": 0.16866932809352875,
+        "peace": 0.4197356402873993
+      }
+    },
+    {
+      "sample_id": "20260613_165229_277",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165229_277_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165229_277_meta.json",
+      "prediction": "open_palm",
+      "confidence": 0.24457162618637085,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.24457162618637085,
+        "fist": 0.21840451657772064,
+        "pinch": 0.17620505392551422,
+        "point": 0.12936370074748993,
+        "peace": 0.23145508766174316
+      }
+    },
+    {
+      "sample_id": "20260613_165229_386",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165229_386_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165229_386_meta.json",
+      "prediction": "peace",
+      "confidence": 0.49957549571990967,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.05904579907655716,
+        "fist": 0.43625643849372864,
+        "pinch": 0.0016182564431801438,
+        "point": 0.0035040329676121473,
+        "peace": 0.49957549571990967
+      }
+    },
+    {
+      "sample_id": "20260613_165229_488",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165229_488_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165229_488_meta.json",
+      "prediction": "peace",
+      "confidence": 0.49592211842536926,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.022254226729273796,
+        "fist": 0.47575604915618896,
+        "pinch": 0.0012479142751544714,
+        "point": 0.004819691181182861,
+        "peace": 0.49592211842536926
+      }
+    },
+    {
+      "sample_id": "20260613_165229_603",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165229_603_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165229_603_meta.json",
+      "prediction": "peace",
+      "confidence": 0.5460649728775024,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.010811667889356613,
+        "fist": 0.42796504497528076,
+        "pinch": 0.0019203483825549483,
+        "point": 0.013237984851002693,
+        "peace": 0.5460649728775024
+      }
+    },
+    {
+      "sample_id": "20260613_165232_232",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165232_232_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165232_232_meta.json",
+      "prediction": "peace",
+      "confidence": 0.5428454875946045,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.0034966443199664354,
+        "fist": 0.407243013381958,
+        "pinch": 0.00414802972227335,
+        "point": 0.04226675257086754,
+        "peace": 0.5428454875946045
+      }
+    },
+    {
+      "sample_id": "20260613_165235_734",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165235_734_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165235_734_meta.json",
+      "prediction": "peace",
+      "confidence": 0.5109375715255737,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.0006474439869634807,
+        "fist": 0.011774072423577309,
+        "pinch": 0.03984302654862404,
+        "point": 0.4367978572845459,
+        "peace": 0.5109375715255737
+      }
+    },
+    {
+      "sample_id": "20260613_165235_838",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165235_838_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165235_838_meta.json",
+      "prediction": "peace",
+      "confidence": 0.5549898743629456,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.0014468616573140025,
+        "fist": 0.022787131369113922,
+        "pinch": 0.04030436649918556,
+        "point": 0.38047176599502563,
+        "peace": 0.5549898743629456
+      }
+    },
+    {
+      "sample_id": "20260613_165236_152",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165236_152_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165236_152_meta.json",
+      "prediction": "peace",
+      "confidence": 0.5671017169952393,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.005327482707798481,
+        "fist": 0.02274852804839611,
+        "pinch": 0.06528470665216446,
+        "point": 0.3395375609397888,
+        "peace": 0.5671017169952393
+      }
+    },
+    {
+      "sample_id": "20260613_165236_478",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165236_478_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165236_478_meta.json",
+      "prediction": "peace",
+      "confidence": 0.4715331196784973,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.001825836137868464,
+        "fist": 0.09492593258619308,
+        "pinch": 0.02582138404250145,
+        "point": 0.4058936834335327,
+        "peace": 0.4715331196784973
+      }
+    },
+    {
+      "sample_id": "20260613_165236_586",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165236_586_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165236_586_meta.json",
+      "prediction": "point",
+      "confidence": 0.4414135813713074,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.003807865548878908,
+        "fist": 0.10256315767765045,
+        "pinch": 0.04797738045454025,
+        "point": 0.4414135813713074,
+        "peace": 0.40423792600631714
+      }
+    },
+    {
+      "sample_id": "20260613_165236_695",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165236_695_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165236_695_meta.json",
+      "prediction": "peace",
+      "confidence": 0.5424078106880188,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.00881093367934227,
+        "fist": 0.03309826925396919,
+        "pinch": 0.07766647636890411,
+        "point": 0.33801642060279846,
+        "peace": 0.5424078106880188
+      }
+    },
+    {
+      "sample_id": "20260613_165236_805",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165236_805_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165236_805_meta.json",
+      "prediction": "peace",
+      "confidence": 0.5339323878288269,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.015382193960249424,
+        "fist": 0.024133557453751564,
+        "pinch": 0.1139368936419487,
+        "point": 0.31261491775512695,
+        "peace": 0.5339323878288269
+      }
+    },
+    {
+      "sample_id": "20260613_165236_913",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165236_913_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165236_913_meta.json",
+      "prediction": "peace",
+      "confidence": 0.4606274366378784,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.03333354741334915,
+        "fist": 0.017420710995793343,
+        "pinch": 0.2147626131772995,
+        "point": 0.27385565638542175,
+        "peace": 0.4606274366378784
+      }
+    },
+    {
+      "sample_id": "20260613_165237_022",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165237_022_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165237_022_meta.json",
+      "prediction": "peace",
+      "confidence": 0.45675942301750183,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.028515540063381195,
+        "fist": 0.015231895260512829,
+        "pinch": 0.21791072189807892,
+        "point": 0.28158241510391235,
+        "peace": 0.45675942301750183
+      }
+    },
+    {
+      "sample_id": "20260613_165237_131",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165237_131_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165237_131_meta.json",
+      "prediction": "peace",
+      "confidence": 0.5269498229026794,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.010433952324092388,
+        "fist": 0.008106996305286884,
+        "pinch": 0.14884395897388458,
+        "point": 0.3056652843952179,
+        "peace": 0.5269498229026794
+      }
+    },
+    {
+      "sample_id": "20260613_165237_458",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165237_458_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165237_458_meta.json",
+      "prediction": "point",
+      "confidence": 0.49502870440483093,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.0001512229791842401,
+        "fist": 0.009501989930868149,
+        "pinch": 0.02524644322693348,
+        "point": 0.49502870440483093,
+        "peace": 0.4700716435909271
+      }
+    },
+    {
+      "sample_id": "20260613_165237_566",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165237_566_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165237_566_meta.json",
+      "prediction": "peace",
+      "confidence": 0.5389756560325623,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 9.533651609672233e-05,
+        "fist": 0.011066428385674953,
+        "pinch": 0.013179470784962177,
+        "point": 0.43668311834335327,
+        "peace": 0.5389756560325623
+      }
+    },
+    {
+      "sample_id": "20260613_165238_110",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165238_110_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165238_110_meta.json",
+      "prediction": "peace",
+      "confidence": 0.5228666663169861,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.005064953584223986,
+        "fist": 0.02667958289384842,
+        "pinch": 0.07759279012680054,
+        "point": 0.3677959740161896,
+        "peace": 0.5228666663169861
+      }
+    },
+    {
+      "sample_id": "20260613_165238_219",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165238_219_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165238_219_meta.json",
+      "prediction": "peace",
+      "confidence": 0.5348719954490662,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.0022566074039787054,
+        "fist": 0.030101314187049866,
+        "pinch": 0.0429052971303463,
+        "point": 0.3898647725582123,
+        "peace": 0.5348719954490662
+      }
+    },
+    {
+      "sample_id": "20260613_165238_763",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165238_763_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165238_763_meta.json",
+      "prediction": "peace",
+      "confidence": 0.5242114067077637,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.00017485380521975458,
+        "fist": 0.0020590254571288824,
+        "pinch": 0.03667335584759712,
+        "point": 0.4368813633918762,
+        "peace": 0.5242114067077637
+      }
+    },
+    {
+      "sample_id": "20260613_165238_872",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260613_165238_872_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260613_165238_872_meta.json",
+      "prediction": "point",
+      "confidence": 0.5631589889526367,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 5.889541353099048e-05,
+        "fist": 0.00046142490464262664,
+        "pinch": 0.05530024692416191,
+        "point": 0.5631589889526367,
+        "peace": 0.3810203969478607
+      }
+    },
+    {
+      "sample_id": "20260614_015701_153",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260614_015701_153_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260614_015701_153_meta.json",
+      "prediction": "peace",
+      "confidence": 0.5854557156562805,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 9.031587069330271e-07,
+        "fist": 0.4145393967628479,
+        "pinch": 8.717075061781543e-09,
+        "point": 3.971178102801787e-06,
+        "peace": 0.5854557156562805
+      }
+    },
+    {
+      "sample_id": "20260614_015710_329",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260614_015710_329_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260614_015710_329_meta.json",
+      "prediction": "peace",
+      "confidence": 0.5361969470977783,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.00011734815780073404,
+        "fist": 0.46368563175201416,
+        "pinch": 7.210432695359259e-09,
+        "point": 7.131422563588785e-08,
+        "peace": 0.5361969470977783
+      }
+    },
+    {
+      "sample_id": "20260614_015710_437",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260614_015710_437_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260614_015710_437_meta.json",
+      "prediction": "fist",
+      "confidence": 0.5600728988647461,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.00019941103528253734,
+        "fist": 0.5600728988647461,
+        "pinch": 1.38180071829197e-08,
+        "point": 1.2096066370759218e-07,
+        "peace": 0.43972763419151306
+      }
+    },
+    {
+      "sample_id": "20260614_015710_546",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260614_015710_546_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260614_015710_546_meta.json",
+      "prediction": "peace",
+      "confidence": 0.5728639364242554,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.0003619178314693272,
+        "fist": 0.4267740249633789,
+        "pinch": 1.4798795966441958e-08,
+        "point": 7.973950744144531e-08,
+        "peace": 0.5728639364242554
+      }
+    },
+    {
+      "sample_id": "20260614_015721_241",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260614_015721_241_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260614_015721_241_meta.json",
+      "prediction": "fist",
+      "confidence": 0.5375824570655823,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.0007496892940253019,
+        "fist": 0.5375824570655823,
+        "pinch": 4.673990972037245e-09,
+        "point": 1.1513845876720552e-08,
+        "peace": 0.46166786551475525
+      }
+    },
+    {
+      "sample_id": "20260614_015721_786",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260614_015721_786_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260614_015721_786_meta.json",
+      "prediction": "peace",
+      "confidence": 0.527064323425293,
+      "correct": true,
+      "probabilities": {
+        "open_palm": 0.0007151358295232058,
+        "fist": 0.4722204804420471,
+        "pinch": 7.285322123351534e-09,
+        "point": 1.6097693844585592e-08,
+        "peace": 0.527064323425293
+      }
+    },
+    {
+      "sample_id": "20260614_015722_003",
+      "label": "peace",
+      "rgb_path": "datasets\\gestures\\peace\\20260614_015722_003_rgb.png",
+      "meta_path": "datasets\\gestures\\peace\\20260614_015722_003_meta.json",
+      "prediction": "fist",
+      "confidence": 0.5014301538467407,
+      "correct": false,
+      "probabilities": {
+        "open_palm": 0.0014287985395640135,
+        "fist": 0.5014301538467407,
+        "pinch": 8.068099965896636e-09,
+        "point": 1.3123373499013269e-08,
+        "peace": 0.4971409738063812
+      }
+    }
+  ]
+}
