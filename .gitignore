@@ -1,65 +1,52 @@
 ### Python
-# Byte-compiled files
 __pycache__/
 *.py[cod]
 *$py.class
-
-# C extensions
 *.so
 
-# Distribution / packaging
+### Distribution / packaging
 build/
 dist/
 *.egg-info/
 *.egg
 
-# dotenv environment variable files
+### dotenv
 .env
 
-# Virtual environments
-.venv
+### Virtual environments
+.venv/
 env/
 venv/
 
-# Unit test / coverage reports
+### Test / cache
 htmlcov/
 .tox/
 .nox/
 .coverage
 .coverage.*
 .pytest_cache/
-
-# Type checkers
 .mypy_cache/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# pyenv
-# .python-version
+.ipynb_checkpoints/
 
 ### Windows
-# Windows thumbnail cache files
 Thumbs.db
-
-# Folder config file
 [Dd]esktop.ini
-
-# Recycle Bin used on file shares
 $RECYCLE.BIN/
-
-# Windows shortcuts
 *.lnk
 
-# Full local RGB-D datasets
+### Full local RGB-D datasets
+datasets/
 apps/datasets/
-datasets/gestures/
 
-# RealSense generated local captures
-apps/localCaptures/
+### RealSense generated local captures
 localCaptures/
+apps/localCaptures/
+captures/
+apps/captures/
 
-# Large generated files / ML artifacts
+### ML models / large artifacts
+models/
+models_*/
 *.ply
 *.bag
 *.pth
@@ -67,6 +54,9 @@ localCaptures/
 *.onnx
 *.ckpt
 
-models/
-*.pt
-*.pth
+### Keep these public demo assets tracked
+!datasets_sample/
+!datasets_sample/**
+!docs/
+!docs/**
+!dataset_summary.json

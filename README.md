@@ -87,6 +87,9 @@ Per-class accuracy:
 
 The weakest class is currently `point`, which is visually more similar to `pinch`, `fist`, or `peace` depending on finger angle and crop position.
 
+RGB-only baseline achieved 97.87% dataset accuracy, but live testing showed background sensitivity.
+To address this, a depth-assisted RGB masking pipeline was added to suppress background features before classification.
+
 Note: the current baseline uses image-level random split. A stricter future evaluation should use burst/session-level split to avoid similar frames appearing across train/test sets.
 
 ## Dataset Preview
